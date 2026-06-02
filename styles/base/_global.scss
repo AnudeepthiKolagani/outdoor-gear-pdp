@@ -1,0 +1,6 @@
+@use "../abstracts/variables" as *;
+
+.container {
+  background-color: $primary-color;
+  color: $text-primary;
+}
