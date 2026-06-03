@@ -1,24 +1,36 @@
-import { useState } from "react";
 import styles from "./QuantityPicker.module.scss";
 
-export const QuantityPicker = () => {
-  const [quantity, setQuantity] = useState(1);
+interface QuantityPickerProps {
+  quantity: number;
+  maxQuantity: number;
+  onQuantityChange: (quantity: number) => void;
+}
 
+export const QuantityPicker = ({
+  quantity,
+  maxQuantity,
+  onQuantityChange,
+}: QuantityPickerProps) => {
   return (
-    <div>
-      <h3>Quantity</h3>
+    <div className={styles.quantityPicker}>
+      <label htmlFor="quantity" className={styles.label}>
+        Quantity
+      </label>
 
-      <div className={styles.container}>
-        <button onClick={() => setQuantity((q) => Math.max(1, q - 1))}>
-          -
-        </button>
-
-        <span>{quantity}</span>
-
-        <button onClick={() => setQuantity((q) => Math.min(10, q + 1))}>
-          +
-        </button>
-      </div>
+      <select
+        id="quantity"
+        value={quantity}
+        onChange={(e) => onQuantityChange(Number(e.target.value))}
+        className={styles.select}
+      >
+        {Array.from({ length: maxQuantity }, (_, index) => index + 1).map(
+          (value) => (
+            <option key={value} value={value}>
+              {value}
+            </option>
+          ),
+        )}
+      </select>
     </div>
   );
 };

@@ -7,7 +7,7 @@ import styles from "./ProductDetailPage.module.scss";
 export const ProductDetailPage = (): JSX.Element => {
   return (
     <div className={styles.productPageLayout}>
-      <div className={styles.productInfoLayout}>
+      <div className={styles.productLayout}>
         <ProductGallery />
         <ProductInfo />
       </div>

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styles from "./SizeSelector.module.scss";
 
 const SIZES = [
@@ -20,9 +21,10 @@ const SIZES = [
 ];
 
 export const SizeSelector = () => {
+  const [selectedSize, setSelectedSize] = useState(SIZES[1].label);
   return (
     <div>
-      <h3>Size</h3>
+      <h3>Size: {selectedSize}</h3>
 
       <div className={styles.sizes}>
         {SIZES.map((size) => (
@@ -31,6 +33,7 @@ export const SizeSelector = () => {
             disabled={size.stock === 0}
             className={`${styles.sizeBtn}
             ${size.stock === 0 ? styles.soldOut : ""}`}
+            onClick={() => setSelectedSize(size.label)}
           >
             {size.label}
 

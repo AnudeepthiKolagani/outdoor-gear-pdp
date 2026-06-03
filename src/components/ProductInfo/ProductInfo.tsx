@@ -1,18 +1,21 @@
-import styles from "./ProductInfo.module.scss";
+import { useState } from "react";
 import { ColorSelector } from "./ColorSelector";
 import { SizeSelector } from "./SizeSelector";
 import { QuantityPicker } from "./QuantityPicker";
+import styles from "./ProductInfo.module.scss";
 
 export const ProductInfo = () => {
+  const [quantity, setQuantity] = useState(1);
+
   return (
     <section className={styles.productInfo}>
-      <p className={styles.brand}>SummitGear</p>
-
       <h1 className={styles.title}>
         CHKOKKO Sunscreen Jacket for Women Hooded Zipper Sports Jacket | UV
         Protection | Sun Protective | Lightweight Water Resistant | Riding Biker
         | Outdoor Travel Gym Running
       </h1>
+      {/* Need to add brand  */}
+      {/* <p className={styles.brand}>SummitGear</p> */}
 
       <div className={styles.priceContainer}>
         <span className={styles.salePrice}>₹12,999</span>
@@ -24,7 +27,11 @@ export const ProductInfo = () => {
 
       <SizeSelector />
 
-      <QuantityPicker />
+      <QuantityPicker
+        quantity={quantity}
+        maxQuantity={10}
+        onQuantityChange={setQuantity}
+      />
 
       <button className={styles.addToCartBtn}>Add to Cart</button>
 
