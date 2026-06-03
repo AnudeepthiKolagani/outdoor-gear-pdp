@@ -3,9 +3,17 @@
   flex-direction: column;
   gap: 20px;
 }
+.productLayout {
+  display: grid;
+  grid-template-columns: 55% 45%;
+  gap: 3rem;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 2rem;
+}
 
-.productInfoLayout {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
+@media (max-width: 767px) {
+  .productLayout {
+    grid-template-columns: 1fr;
+  }
 }
