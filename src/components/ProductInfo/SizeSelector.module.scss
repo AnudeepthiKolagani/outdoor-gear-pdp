@@ -1,3 +1,4 @@
+@use "../../../styles/abstracts/variables" as *;
 .sizes {
   display: flex;
   flex-wrap: wrap;
@@ -9,10 +10,10 @@
 
   padding: 0.75rem 1rem;
 
-  border: 1px solid #d1d5db;
+  border: 1px solid $secondary-color;
   border-radius: 8px;
 
-  background: white;
+  background: $bg-secondary;
   cursor: pointer;
 
   display: flex;
@@ -20,7 +21,7 @@
 }
 
 .soldOut {
-  background: #f1f5f9;
-  color: #94a3b8;
+  background: $bg-secondary;
+  color: $muted-color;
   cursor: not-allowed;
 }

@@ -1,3 +1,5 @@
+@use "../../../styles/abstracts/variables" as *;
+
 .quantityPicker {
   display: flex;
   flex-direction: column;
@@ -15,10 +17,10 @@
 
   padding: 0 0.75rem;
 
-  border: 1px solid #656e7b;
+  border: 1px solid $secondary-color;
   border-radius: 8px;
 
-  background: #f3f4f6;
+  background: $bg-secondary;
 
   cursor: pointer;
 
@@ -28,5 +30,5 @@
 }
 
 .select:focus {
-  border-color: #1f6b42;
+  border-color: $primary-color;
 }

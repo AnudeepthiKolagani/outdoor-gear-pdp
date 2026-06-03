@@ -1,9 +1,10 @@
+@use "../../../styles/abstracts/variables" as *;
 .productCard {
   display: flex;
   flex-direction: column;
 
-  background: #fff;
-  border: 1px solid #e5e7eb;
+  background: $bg-primary;
+  border: 1px solid $secondary-color;
   border-radius: 12px;
 
   overflow: hidden;
@@ -22,7 +23,7 @@
       0 10px 25px rgba(0, 0, 0, 0.1),
       0 4px 10px rgba(0, 0, 0, 0.05);
 
-    border-color: #2563eb;
+    border-color: $primary-color;
   }
 }
 
@@ -34,7 +35,7 @@
   justify-content: center;
 
   padding: 1rem;
-  background: #f9fafb;
+  background: $bg-secondary;
 }
 
 .productImage {
@@ -75,7 +76,7 @@
 }
 
 .productDescription {
-  color: #6b7280;
+  color: $text-secondary;
   font-size: 0.9rem;
 
   line-height: 1.5;
@@ -93,7 +94,7 @@
   font-size: 1.25rem;
   font-weight: 700;
 
-  color: #111827;
+  color: $text-primary;
 }
 
 .rating {
@@ -101,11 +102,11 @@
   align-items: center;
   gap: 0.5rem;
 
-  color: #332101;
+  color: $text-primary;
   font-weight: 500;
 }
 
 .reviewCount {
-  color: #6b7280;
+  color: $text-secondary;
   font-size: 0.875rem;
 }
