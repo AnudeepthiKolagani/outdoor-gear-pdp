@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./Products.module.scss";
 import { ProductCard } from "../../components/ProductCard/ProductCard";
+import { ProductGridSkeleton } from "../../components/Skeletons/ProductGrid/ProductGridSkeleton";
 
 interface Product {
   id: number;
@@ -16,34 +17,60 @@ interface Product {
   category: string;
 }
 
+const PRODUCTS_API_URL = "https://fakestoreapi.com/products";
+
 export const Products = () => {
   const [products, setProducts] = useState<Product[]>([]);
-  const PRODUCTS_API_URL = "https://fakestoreapi.com/products";
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get(PRODUCTS_API_URL);
-        console.log("Fetched products:", response.data);
+        setIsLoading(true);
+        setError(null);
+
+        const response = await axios.get<Product[]>(PRODUCTS_API_URL);
+
         setProducts(response.data);
-      } catch (error) {
-        console.error("Error fetching products:", error);
+      } catch (err) {
+        if (axios.isAxiosError(err)) {
+          setError(
+            err.response?.data?.message ||
+              "Failed to fetch products. Please try again.",
+          );
+        } else {
+          setError("Something went wrong. Please try again.");
+        }
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchProducts();
   }, []);
 
+  if (isLoading) {
+    return <ProductGridSkeleton />;
+  }
+
+  if (error) {
+    return (
+      <div className={styles.errorContainer}>
+        <p>{error}</p>
+        <button onClick={fetchProducts}>Retry</button>
+      </div>
+    );
+  }
+
+  if (products.length === 0) {
+    return <p>No products available.</p>;
+  }
+
   return (
-    <div>
-      {products.length > 0 ? (
-        <div className={styles.productsContainer}>
-          {products.map((product: Product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-      ) : (
-        <p>No products available.</p>
-      )}
+    <div className={styles.productsContainer}>
+      {products.map((product) => (
+        <ProductCard key={product.id} product={product} />
+      ))}
     </div>
   );
 };
