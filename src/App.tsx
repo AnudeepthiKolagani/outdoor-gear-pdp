@@ -1,9 +1,9 @@
-import { ProductInfo } from "./components/ProductInfo/ProductInfo";
+import { ProductDetailPage } from "./pages/ProductDetailPage/ProductDetailPage";
 
 function App() {
   return (
     <div className="container">
-      <ProductInfo />
+      <ProductDetailPage />
     </div>
   );
 }

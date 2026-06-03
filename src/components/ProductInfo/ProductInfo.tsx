@@ -1,11 +1,36 @@
-import type { JSX } from "react/jsx-runtime";
-import { ImageGallery } from "../ImageGallery/ImageGallery";
+import styles from "./ProductInfo.module.scss";
+import { ColorSelector } from "./ColorSelector";
+import { SizeSelector } from "./SizeSelector";
+import { QuantityPicker } from "./QuantityPicker";
 
-export const ProductInfo = (): JSX.Element => {
+export const ProductInfo = () => {
   return (
-    <div className="product-info">
-      <h1>Product Info</h1>
-      <ImageGallery />
-    </div>
+    <section className={styles.productInfo}>
+      <p className={styles.brand}>SummitGear</p>
+
+      <h1 className={styles.title}>
+        CHKOKKO Sunscreen Jacket for Women Hooded Zipper Sports Jacket | UV
+        Protection | Sun Protective | Lightweight Water Resistant | Riding Biker
+        | Outdoor Travel Gym Running
+      </h1>
+
+      <div className={styles.priceContainer}>
+        <span className={styles.salePrice}>₹12,999</span>
+
+        <span className={styles.originalPrice}>₹15,999</span>
+      </div>
+
+      <ColorSelector />
+
+      <SizeSelector />
+
+      <QuantityPicker />
+
+      <button className={styles.addToCartBtn}>Add to Cart</button>
+
+      <p className={styles.deliveryEstimate}>
+        Estimated delivery: 3-5 business days
+      </p>
+    </section>
   );
 };

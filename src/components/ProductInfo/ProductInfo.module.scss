@@ -1,0 +1,62 @@
+@use "../../../styles//abstracts/variables" as *;
+
+.productInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.brand {
+  font-size: 0.875rem;
+  color: $text-secondary;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: $text-primary;
+}
+
+.priceContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.salePrice {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: $primary-color;
+}
+
+.originalPrice {
+  color: $text-secondary;
+  text-decoration: line-through;
+}
+
+.addToCartBtn {
+  width: 100%;
+  height: 52px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: $primary-color;
+  color: white;
+
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.addToCartBtn:disabled {
+  background: #cbd5e1;
+  cursor: not-allowed;
+}
+
+.deliveryEstimate {
+  color: $text-secondary;
+  font-size: 0.875rem;
+}

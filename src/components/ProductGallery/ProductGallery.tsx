@@ -1,6 +1,6 @@
 import type { JSX } from "react/jsx-runtime";
 import { useState } from "react";
-import styles from "./ImageGallery.module.scss";
+import styles from "./ProductGallery.module.scss";
 
 const thumbnailImages = [
   "https://m.media-amazon.com/images/I/61m1acM1l6L._SY741_.jpg",
@@ -8,7 +8,7 @@ const thumbnailImages = [
   "https://m.media-amazon.com/images/I/61ZAQe+bddL._SY741_.jpg",
   "https://m.media-amazon.com/images/I/51BoVdE8j4L._SY741_.jpg",
 ];
-export const ImageGallery = (): JSX.Element => {
+export const ProductGallery = (): JSX.Element => {
   const [heroImage, setHeroImage] = useState(
     "https://m.media-amazon.com/images/I/61JxoCDF35L._SY879_.jpg",
   );
