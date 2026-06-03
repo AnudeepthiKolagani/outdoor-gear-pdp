@@ -25,3 +25,7 @@
   color: $muted-color;
   cursor: not-allowed;
 }
+
+.selected {
+  border-color: $primary-color;
+}

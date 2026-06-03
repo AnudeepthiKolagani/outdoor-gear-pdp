@@ -4,23 +4,36 @@ import { SizeSelector } from "./SizeSelector";
 import { QuantityPicker } from "./QuantityPicker";
 import styles from "./ProductInfo.module.scss";
 
-export const ProductInfo = () => {
+interface Product {
+  id: number;
+  description: string;
+  image: string;
+  price: number;
+  rating: {
+    rate: number;
+    count: number;
+  };
+  title: string;
+  category: string;
+}
+
+export const ProductInfo = ({ product }: { product: Product | null }) => {
   const [quantity, setQuantity] = useState(1);
 
   return (
     <section className={styles.productInfo}>
-      <h1 className={styles.title}>
-        CHKOKKO Sunscreen Jacket for Women Hooded Zipper Sports Jacket | UV
-        Protection | Sun Protective | Lightweight Water Resistant | Riding Biker
-        | Outdoor Travel Gym Running
-      </h1>
+      <h1 className={styles.title}>{product?.title || "Product Title"}</h1>
       {/* Need to add brand  */}
       {/* <p className={styles.brand}>SummitGear</p> */}
 
       <div className={styles.priceContainer}>
-        <span className={styles.salePrice}>₹12,999</span>
+        <span className={styles.salePrice}>
+          ₹{product?.price?.toLocaleString()}
+        </span>
 
-        <span className={styles.originalPrice}>₹15,999</span>
+        <span className={styles.originalPrice}>
+          ₹{(product?.price ?? 1000 * 1.2).toLocaleString()}
+        </span>
       </div>
 
       <ColorSelector />

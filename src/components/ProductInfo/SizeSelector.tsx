@@ -21,19 +21,19 @@ const SIZES = [
 ];
 
 export const SizeSelector = () => {
-  const [selectedSize, setSelectedSize] = useState(SIZES[1].label);
+  const [selectedSize, setSelectedSize] = useState(0);
   return (
     <div>
-      <h3>Size: {selectedSize}</h3>
+      <h3>Size: {SIZES[selectedSize].label}</h3>
 
       <div className={styles.sizes}>
-        {SIZES.map((size) => (
+        {SIZES.map((size, index) => (
           <button
             key={size.label}
             disabled={size.stock === 0}
-            className={`${styles.sizeBtn}
+            className={`${styles.sizeBtn} ${selectedSize === index ? styles.selected : ""}
             ${size.stock === 0 ? styles.soldOut : ""}`}
-            onClick={() => setSelectedSize(size.label)}
+            onClick={() => setSelectedSize(index)}
           >
             {size.label}
 

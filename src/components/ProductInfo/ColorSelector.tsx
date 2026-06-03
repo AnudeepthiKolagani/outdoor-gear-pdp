@@ -17,19 +17,22 @@ const COLOR_OPTIONS = [
 ];
 
 export const ColorSelector = () => {
-  const [activeColor, setActiveColor] = useState(COLOR_OPTIONS[0].name);
+  const [activeColor, setActiveColor] = useState(0);
   return (
     <div>
-      <h3>Color: {activeColor}</h3>
+      <h3>Color: {COLOR_OPTIONS[activeColor].name}</h3>
 
       <div className={styles.swatches}>
-        {COLOR_OPTIONS.map((option) => (
+        {COLOR_OPTIONS.map((option, index) => (
           <div>
             <button
-              onClick={() => setActiveColor(option.name)}
-              className={styles.swatch}
+              onClick={() => setActiveColor(index)}
+              className={`${styles.swatch} ${activeColor === index ? styles.active : ""}`}
             >
-              <img src={option.image} alt={`Product with color: ${option.name}`} />
+              <img
+                src={option.image}
+                alt={`Product with color: ${option.name}`}
+              />
             </button>
           </div>
         ))}
