@@ -6,13 +6,13 @@ import { QuantityPicker } from "./QuantityPicker";
 export const ProductInfo = () => {
   return (
     <section className={styles.productInfo}>
-      <p className={styles.brand}>SummitGear</p>
-
       <h1 className={styles.title}>
         CHKOKKO Sunscreen Jacket for Women Hooded Zipper Sports Jacket | UV
         Protection | Sun Protective | Lightweight Water Resistant | Riding Biker
         | Outdoor Travel Gym Running
       </h1>
+      {/* Need to add brand  */}
+      {/* <p className={styles.brand}>SummitGear</p> */}
 
       <div className={styles.priceContainer}>
         <span className={styles.salePrice}>₹12,999</span>
