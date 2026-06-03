@@ -1,9 +1,12 @@
-import styles from "./ProductInfo.module.scss";
+import { useState } from "react";
 import { ColorSelector } from "./ColorSelector";
 import { SizeSelector } from "./SizeSelector";
 import { QuantityPicker } from "./QuantityPicker";
+import styles from "./ProductInfo.module.scss";
 
 export const ProductInfo = () => {
+  const [quantity, setQuantity] = useState(1);
+
   return (
     <section className={styles.productInfo}>
       <h1 className={styles.title}>
@@ -24,7 +27,11 @@ export const ProductInfo = () => {
 
       <SizeSelector />
 
-      <QuantityPicker />
+      <QuantityPicker
+        quantity={quantity}
+        maxQuantity={10}
+        onQuantityChange={setQuantity}
+      />
 
       <button className={styles.addToCartBtn}>Add to Cart</button>
 

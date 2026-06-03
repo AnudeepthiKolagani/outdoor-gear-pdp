@@ -28,7 +28,7 @@
 .salePrice {
   font-size: 1.75rem;
   font-weight: 700;
-  color: $primary-color;
+  color: #00ff00;
 }
 
 .originalPrice {
@@ -38,17 +38,15 @@
 
 .addToCartBtn {
   width: 100%;
-  height: 52px;
-
+  height:50px;
+  background: #00ff00;
+  color: #fff;
   border: none;
   border-radius: 8px;
-
-  background: $primary-color;
-  color: white;
-
-  cursor: pointer;
   font-size: 1rem;
   font-weight: 600;
+  cursor: pointer;
+  
 }
 
 .addToCartBtn:disabled {
