@@ -1,0 +1,33 @@
+.reviewGrid {
+  display: grid;
+  gap: 1rem;
+}
+
+.card {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 1.25rem;
+  background: #fff;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 0.75rem;
+
+  h4 {
+    margin: 0;
+  }
+
+  span {
+    color: #f59e0b;
+    font-size: 1rem;
+  }
+}
+
+.card p {
+  color: #555;
+  line-height: 1.6;
+}

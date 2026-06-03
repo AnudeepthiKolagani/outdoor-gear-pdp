@@ -1,19 +1,28 @@
 import type { JSX } from "react/jsx-runtime";
+import styles from "./Description.module.scss";
 
 export const Description = (): JSX.Element => {
   return (
-    <div>
-      <h2>Product Description</h2>
+    <div className={styles.description}>
       <p>
-        This CHKOKKO Sunscreen Jacket for Women Hooded Zipper Sports Jacket
-        offers excellent UV protection, making it perfect for outdoor
-        activities. It is lightweight, water-resistant, and designed for riding,
-        biking, outdoor travel, gym workouts, and running. The jacket features a
-        stylish design with a hood and zipper closure, providing both
-        functionality and fashion. Whether you're hitting the trails or going
-        for a run, this jacket will keep you protected from the sun while
-        ensuring comfort and style.
+        Experience premium sound quality with advanced noise cancellation,
+        crystal-clear voice pickup, and an ergonomic design built for all-day
+        comfort.
       </p>
+
+      <p>
+        Designed for work, travel, and entertainment, these headphones deliver
+        immersive audio, long battery life, and seamless connectivity across
+        devices.
+      </p>
+
+      <ul>
+        <li>Active Noise Cancellation</li>
+        <li>Up to 30 Hours Battery Life</li>
+        <li>Bluetooth 5.3 Connectivity</li>
+        <li>Fast Charging Support</li>
+        <li>Premium Over-Ear Comfort</li>
+      </ul>
     </div>
   );
 };
