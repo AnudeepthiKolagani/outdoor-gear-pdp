@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./Products.module.scss";
-import { useNavigate } from "react-router-dom";
+import { ProductCard } from "../../components/ProductCard/ProductCard";
 
 interface Product {
   id: number;
@@ -18,7 +18,6 @@ interface Product {
 
 export const Products = () => {
   const [products, setProducts] = useState<Product[]>([]);
-  const navigate = useNavigate();
   const PRODUCTS_API_URL = "https://fakestoreapi.com/products";
 
   useEffect(() => {
@@ -39,36 +38,7 @@ export const Products = () => {
       {products.length > 0 ? (
         <div className={styles.productsContainer}>
           {products.map((product: Product) => (
-            <div
-              className={styles.productCard}
-              key={product.id}
-              onClick={() => navigate(`/product/${product.id}`)}
-            >
-              <div className={styles.imageContainer}>
-                <img
-                  src={product.image}
-                  alt={product.title}
-                  className={styles.productImage}
-                />
-              </div>
-
-              <div className={styles.cardContent}>
-                <h2 className={styles.productTitle}>{product.title}</h2>
-
-                <p className={styles.productDescription}>
-                  {product.description}
-                </p>
-
-                <div className={styles.price}>${product.price}</div>
-
-                <div className={styles.rating}>
-                  ⭐ {product.rating.rate}
-                  <span className={styles.reviewCount}>
-                    ({product.rating.count} reviews)
-                  </span>
-                </div>
-              </div>
-            </div>
+            <ProductCard key={product.id} product={product} />
           ))}
         </div>
       ) : (
