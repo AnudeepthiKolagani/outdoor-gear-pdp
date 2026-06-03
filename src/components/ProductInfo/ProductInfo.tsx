@@ -19,6 +19,17 @@ interface Product {
 
 export const ProductInfo = ({ product }: { product: Product | null }) => {
   const [quantity, setQuantity] = useState(1);
+  const productWithVariants = {
+    ...product,
+    colors: [
+      { id: 1, name: "Black", hex: "#1F2937" },
+      { id: 2, name: "White", hex: "#F9FAFB" },
+      { id: 3, name: "Navy Blue", hex: "#1E3A8A" },
+      { id: 4, name: "Forest Green", hex: "#166534" },
+      { id: 5, name: "Burgundy", hex: "#7F1D1D" },
+    ],
+    sizes: ["S", "M", "L", "XL"],
+  };
 
   return (
     <section className={styles.productInfo}>
@@ -36,7 +47,7 @@ export const ProductInfo = ({ product }: { product: Product | null }) => {
         </span>
       </div>
 
-      <ColorSelector />
+      <ColorSelector availableColors={productWithVariants.colors} />
 
       <SizeSelector />
 

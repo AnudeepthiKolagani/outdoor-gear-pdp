@@ -5,11 +5,12 @@
 }
 
 .swatch {
-  width: fit-content;
-  height: fit-content;
+  width: 42px;
+  height: 42px;
   border: 2px solid $secondary-color;
   cursor: pointer;
-  border-radius: 8px;
+  border-radius: 50px;
+  background-color: #00ff00;
 }
 
 .active {

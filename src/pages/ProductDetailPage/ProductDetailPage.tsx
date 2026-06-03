@@ -44,7 +44,7 @@ export const ProductDetailPage = (): JSX.Element => {
         <ShoppingCartIcon className={styles.shoppingCartIcon} />
       </div>
       <div className={styles.productLayout}>
-        <ProductGallery />
+        <ProductGallery productImage = {product?.image}/>
         <ProductInfo product={product} />
       </div>
       <ProductDetails />
