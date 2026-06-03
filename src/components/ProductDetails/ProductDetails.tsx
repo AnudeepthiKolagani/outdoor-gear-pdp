@@ -1,30 +1,40 @@
-import type { JSX } from "react/jsx-runtime";
 import { useState } from "react";
+import type { JSX } from "react/jsx-runtime";
+
 import { Description } from "./Description";
-import { Reviews } from "./Reviews";
 import { Specifications } from "./Specifications";
+import { Reviews } from "./Reviews";
+
 import styles from "./ProductDetails.module.scss";
 
-const tabs = ["Description", "Specifications", "Reviews"];
+const tabs = ["Description", "Specifications", "Reviews"] as const;
+
 export const ProductDetails = (): JSX.Element => {
-  const [activeTab, setActiveTab] = useState(tabs[0]);
+  const [activeTab, setActiveTab] = useState("Description");
+
   return (
-    <div>
-      <h1>Product Details</h1>
+    <section className={styles.productDetails}>
+      <h2 className={styles.heading}>Product Details</h2>
+
       <div className={styles.tabs}>
         {tabs.map((tab) => (
           <button
             key={tab}
+            className={`${styles.tab} ${
+              activeTab === tab ? styles.activeTab : ""
+            }`}
             onClick={() => setActiveTab(tab)}
-            className={styles.tab}
           >
             {tab}
           </button>
         ))}
       </div>
-      {activeTab === "Description" && <Description />}
-      {activeTab === "Specifications" && <Specifications />}
-      {activeTab === "Reviews" && <Reviews />}
-    </div>
+
+      <div className={styles.content}>
+        {activeTab === "Description" && <Description />}
+        {activeTab === "Specifications" && <Specifications />}
+        {activeTab === "Reviews" && <Reviews />}
+      </div>
+    </section>
   );
 };
