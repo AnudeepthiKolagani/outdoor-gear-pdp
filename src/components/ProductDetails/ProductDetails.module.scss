@@ -1,0 +1,16 @@
+.tabs {
+  display: flex;
+  flex-direction: row;
+  gap: 5rem;
+  font-size: 1.75rem;
+  font-weight: bold;
+}
+
+.tab {
+    width: fit-content;
+  cursor: pointer;
+  padding: 1rem;
+  border-bottom: 2px solid transparent;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
