@@ -3,7 +3,7 @@ import { ProductGallery } from "../../components/ProductGallery/ProductGallery";
 import { ProductInfo } from "../../components/ProductInfo/ProductInfo";
 import { ProductDetails } from "../../components/ProductDetails/ProductDetails";
 import styles from "./ProductDetailPage.module.scss";
-import { ShoppingCartIcon } from "lucide-react";
+import { ArrowLeft, ShoppingCartIcon } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -62,6 +62,9 @@ export const ProductDetailPage = (): JSX.Element => {
   return (
     <div className={styles.productPageLayout}>
       <div className={styles.header}>
+        <button className={styles.backButton} onClick={() => navigate("/")}>
+          <ArrowLeft />
+        </button>
         <ShoppingCartIcon
           className={styles.shoppingCartIcon}
           onClick={() => navigate("/cart")}
