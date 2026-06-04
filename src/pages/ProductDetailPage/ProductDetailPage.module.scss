@@ -10,27 +10,62 @@
   gap: 3rem;
 
   max-width: 1440px;
-  margin: 0 auto;
+  margin: 5rem ;
   padding: 2rem;
   align-items: start;
 }
 
-/* =========================
-   HEADER (Cart Icon)
-   ========================= */
-
 .header {
   position: fixed;
-  top: 20px;
-  right: 50px;
+  max-width: 1740px;
+  margin: 2rem auto;
+  top: 5px;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0 24px;
   z-index: 1000;
+  margin-bottom: 2rem;
+}
+
+.backButton {
+  background: transparent;
+  border: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  padding: 8px;
+  border-radius: 8px;
+
+  color: #333;
+
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
 }
 
 .shoppingCartIcon {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
+
   color: #333;
   cursor: pointer;
+
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 
 /* =========================
@@ -48,11 +83,11 @@
 
   .header {
     top: 12px;
-    right: 12px;
+    padding: 0 16px;
   }
 
   .shoppingCartIcon {
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
   }
 }

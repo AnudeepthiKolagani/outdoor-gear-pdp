@@ -1,11 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import { useProducts } from "../../context/ProductContext";
 import styles from "./CartPage.module.scss";
+import { ArrowLeft } from "lucide-react";
 
 export const CartPage = () => {
   const { cartItems, removeFromCart, updateCartItem, clearCart } = useCart();
   const { products, isLoading } = useProducts();
+  const navigate = useNavigate();
 
   const cartRows = cartItems.map((cartItem) => {
     const product = products.find((item) => item.id === cartItem.productId);
@@ -26,11 +28,13 @@ export const CartPage = () => {
   return (
     <div className={styles.cartPage}>
       <div className={styles.header}>
-        <Link to="/" className={styles.homeLink}>
-          ← Back to shop
-        </Link>
+        <button className={styles.backButton} onClick={() => navigate("/")}>
+          <ArrowLeft />
+        </button>
 
-        <h1>Shopping Cart</h1>
+        <h1 className={styles.title}>Your Cart</h1>
+
+        <div className={styles.rightPlaceholder} />
       </div>
 
       {cartRows.length === 0 ? (
