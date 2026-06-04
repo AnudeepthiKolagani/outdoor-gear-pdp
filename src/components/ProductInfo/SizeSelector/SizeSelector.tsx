@@ -21,7 +21,7 @@ export const SizeSelector = ({
       <h3>Size: {activeSize.code}</h3>
 
       <div className={styles.sizes}>
-        {availableSizes.map((size, index) => (
+        {availableSizes.map((size) => (
           <button
             key={size.id}
             title={size.stock === 0 ? "Currently out of stock" : ""}
