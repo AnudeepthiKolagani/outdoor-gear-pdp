@@ -14,6 +14,7 @@ const zoomData: ZoomState = {
 };
 
 const setZoom = vi.fn();
+const onHeroImageChange = vi.fn();
 
 describe("Products Gallery", () => {
   it("Should render thumbnail images as heroImage", () => {
@@ -22,6 +23,7 @@ describe("Products Gallery", () => {
         productImage="./hero.png"
         zoom={zoomData}
         setZoom={setZoom}
+        onHeroImageChange={onHeroImageChange}
       />,
     );
 
@@ -36,6 +38,7 @@ describe("Products Gallery", () => {
         productImage="./hero.png"
         zoom={zoomData}
         setZoom={setZoom}
+        onHeroImageChange={onHeroImageChange}
       />,
     );
 
@@ -54,6 +57,7 @@ describe("Products Gallery", () => {
         productImage="./hero.png"
         zoom={zoomData}
         setZoom={setZoom}
+        onHeroImageChange={onHeroImageChange}
       />,
     );
 
