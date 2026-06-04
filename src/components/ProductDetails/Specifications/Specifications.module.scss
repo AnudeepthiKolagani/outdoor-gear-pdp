@@ -1,0 +1,89 @@
+@use "../../../../styles/abstracts/variables" as *;
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow-x: auto;
+}
+
+.table tr {
+  border-bottom: 1px solid $border-color;
+  transition: background-color 0.25s ease;
+}
+
+.table tr:hover {
+  background-color: $bg-secondary;
+}
+
+.table th {
+  width: 250px;
+  text-align: left;
+  padding: 1rem;
+  background: $bg-tertiary;
+  font-weight: 600;
+  color: $text-primary;
+  border-bottom: 2px solid $border-color;
+}
+
+.table td {
+  padding: 1rem;
+  color: $text-primary;
+}
+
+@media (min-width: 768px) {
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .table th {
+    width: 250px;
+    padding: 1rem;
+    font-size: 0.95rem;
+  }
+
+  .table td {
+    padding: 1rem;
+    font-size: 0.95rem;
+  }
+}
+
+//Mobile Responsive
+@media (max-width: 767px) {
+  .table {
+    width: 100%;
+    font-size: 0.9rem;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .table tr {
+    display: block;
+    margin-bottom: 1rem;
+    border: 1px solid $secondary-color;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .table th,
+  .table td {
+    display: block;
+    padding: 0.75rem;
+    border-bottom: 1px solid $secondary-color;
+  }
+
+  .table th {
+    width: auto;
+    background: $bg-secondary;
+    font-weight: 600;
+    padding: 0.75rem;
+  }
+
+  .table td {
+    padding: 0.75rem;
+  }
+
+  .table tr:last-child td {
+    border-bottom: none;
+  }
+}

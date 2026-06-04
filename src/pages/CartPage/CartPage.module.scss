@@ -1,0 +1,518 @@
+@use "../../../styles/abstracts/variables" as *;
+
+.cartPage {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 100vh;
+  background: $bg-primary;
+}
+
+.header {
+  max-width: 1740px;
+  margin: 2rem auto;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  display: grid;
+  grid-template-columns: 40px 1fr 40px;
+  align-items: center;
+
+  padding: 12px 16px;
+
+  background: #fff;
+  z-index: 1000;
+}
+.backButton {
+  background: transparent;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  transition: all 0.25s ease;
+  color: $text-primary;
+}
+
+.backButton:hover {
+  background: $bg-secondary;
+  border-color: $border-color;
+  box-shadow: 0 2px 6px rgba(19, 25, 33, 0.1);
+}
+
+.backButton:active {
+  box-shadow: 0 1px 2px rgba(19, 25, 33, 0.08);
+}
+.title {
+  text-align: center;
+
+  font-size: 2rem;
+  font-weight: 600;
+
+  margin: 0;
+}
+.rightPlaceholder {
+  width: 40px;
+}
+
+.homeLink {
+  text-decoration: none;
+  color: $text-primary;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.cartLayout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.cartTable {
+  background: $bg-primary;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.cartRow {
+  display: grid;
+  grid-template-columns: 160px 1fr auto;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  border-bottom: 1px solid $border-color;
+  transition: background-color 0.25s ease;
+
+  &:hover {
+    background: $bg-secondary;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.productImage {
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+}
+
+.productDetails {
+  h2 {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    font-weight: 600;
+  }
+}
+
+.variantRow {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+
+  span {
+    background: $bg-secondary;
+    border-radius: 999px;
+    padding: 0.35rem 0.85rem;
+    font-size: 0.875rem;
+  }
+}
+
+.price {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: $text-primary;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.quantityControl {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  button {
+    width: 36px;
+    height: 36px;
+    border: 1px solid $border-color;
+    border-radius: 50%;
+    background: $bg-secondary;
+    color: $text-primary;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    font-size: 1.1rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 3px rgba(19, 25, 33, 0.08);
+  }
+
+  button:hover {
+    background: $bg-primary;
+    border-color: $accent-color;
+    box-shadow: 0 2px 6px rgba(19, 25, 33, 0.12);
+  }
+
+  button:active {
+    box-shadow: 0 1px 2px rgba(19, 25, 33, 0.08);
+  }
+
+  button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  span {
+    min-width: 24px;
+    text-align: center;
+    font-weight: 600;
+    color: $text-primary;
+  }
+}
+
+.removeButton {
+  border: 1px solid transparent;
+  background: transparent;
+  color: $error-color;
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  font-weight: 500;
+  border-radius: 12px;
+  padding: 1.5rem;
+  position: sticky;
+  top: 1rem;
+  box-shadow: 0 4px 16px rgba(19, 25, 33, 0.12);
+  border: 1px solid $border-color;
+}
+.removeButton:active {
+  background: rgba($error-color, 0.12);
+}
+
+.summaryBox {
+  background: $bg-primary;
+
+  border-radius: 12px;
+  padding: 1.5rem;
+
+  position: sticky;
+  top: 1rem;
+
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+
+  h3 {
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+  }
+}
+
+.summaryRow,
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.totalRow {
+  margin-top: 1rem;
+
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.checkoutButton {
+  width: 100%;
+  margin-top: 1rem;
+  border: none;
+  border-radius: 8px;
+  background: $btn-primary-bg;
+  color: $btn-primary-text;
+  padding: 0.9rem;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 8px rgba(255, 216, 20, 0.2);
+}
+
+.checkoutButton:hover {
+  background: $btn-primary-hover;
+  box-shadow: 0 4px 12px rgba(255, 216, 20, 0.3);
+  transform: translateY(-2px);
+}
+
+.checkoutButton:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(255, 216, 20, 0.2);
+}
+
+.checkoutButton:disabled {
+  background: $btn-disabled-bg;
+  color: $btn-disabled-text;
+  cursor: not-allowed;
+  box-shadow: none;
+  opacity: 0.6;
+}
+
+.clearButton {
+  width: 100%;
+  margin-top: 0.75rem;
+  border: 1px solid $border-color;
+  background: $bg-primary;
+  border-radius: 8px;
+  padding: 0.9rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: $text-primary;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 1px 3px rgba(19, 25, 33, 0.08);
+  margin-top: 1rem;
+  text-decoration: none;
+  color: $link-color;
+  font-weight: 500;
+  transition: color 0.25s ease;
+
+  &:hover {
+    color: $link-hover;
+  }
+}
+
+.clearButton:active {
+  box-shadow: 0 1px 3px rgba(19, 25, 33, 0.08);
+}
+
+.continueShopping {
+  display: block;
+  text-align: right;
+
+  margin-top: 1rem;
+  font-size: 1.25rem;
+
+  text-decoration: none;
+  color: #007185;
+
+  &:hover {
+    text-decoration: underline;
+
+  }
+}
+
+.emptyCart {
+  background: white;
+  border-radius: 12px;
+  text-align: center;
+  text-decoration: none;
+  // background: $btn-primary-bg;
+  color: $btn-primary-text;
+  padding: 0.9rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.25s ease;
+  box-shadow: -4px 4px 4px 4px rgba(222, 187, 12, 0.2);
+}
+
+.actionButton:hover {
+  background: $btn-primary-hover;
+  box-shadow: 0 4px 12px rgba(255, 216, 20, 0.3);
+  transform: translateY(-2px);
+}
+
+.actionButton:active {
+  transform: translateY(0);
+}
+
+.actionButton {
+  display: inline-block;
+
+  text-decoration: none;
+
+  background: #ffd814;
+  color: black;
+
+  padding: 0.9rem 1.5rem;
+  border-radius: 999px;
+
+  font-weight: 600;
+}
+
+.loadingText {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+@media (min-width: 768px) {
+  .cartPage {
+    padding: 2rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .cartLayout {
+    grid-template-columns: 1fr 340px;
+    gap: 1.5rem;
+  }
+
+  .cartRow {
+    grid-template-columns: 160px 1fr auto;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+
+  .productImage {
+    width: 160px;
+    height: 160px;
+  }
+
+  .summaryBox {
+    position: sticky;
+    top: 1rem;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+}
+
+//Mobile Responsive
+@media (max-width: 767px) {
+  .cartPage {
+    padding: 1rem;
+  }
+
+  .cartLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .title {
+    font-size: 1.3rem;
+  }
+
+  .header {
+    padding: 10px 12px;
+    margin: 1rem auto;
+  }
+
+  .summaryBox {
+    position: static;
+    padding: 1rem;
+
+    h3 {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .cartRow {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .productImage {
+    width: 100%;
+    height: 180px;
+  }
+
+  .productDetails {
+    h2 {
+      font-size: 1rem;
+    }
+  }
+
+  .variantRow {
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+
+    span {
+      font-size: 0.8rem;
+      padding: 0.3rem 0.7rem;
+    }
+  }
+
+  .price {
+    font-size: 1.2rem;
+  }
+
+  .actions {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .quantityControl {
+    gap: 0.5rem;
+
+    button {
+      width: 32px;
+      height: 32px;
+      font-size: 0.95rem;
+    }
+
+    span {
+      min-width: 20px;
+      font-size: 0.9rem;
+    }
+  }
+
+  .removeButton {
+    font-size: 0.9rem;
+  }
+
+  .summaryRow,
+  .totalRow {
+    font-size: 0.95rem;
+  }
+
+  .totalRow {
+    font-size: 1.1rem;
+  }
+
+  .checkoutButton,
+  .clearButton {
+    padding: 0.8rem;
+    font-size: 0.95rem;
+  }
+
+  .continueShopping {
+    font-size: 0.95rem;
+  }
+
+  .emptyCart {
+    padding: 2rem 1rem;
+
+    h2 {
+      font-size: 1.2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+  }
+
+  .actionButton {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.95rem;
+  }
+}
