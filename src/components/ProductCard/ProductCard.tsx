@@ -2,18 +2,8 @@ import { useNavigate } from "react-router-dom";
 import type { JSX } from "react/jsx-runtime";
 import styles from "./ProductCard.module.scss";
 
-interface Product {
-  id: number;
-  description: string;
-  image: string;
-  price: number;
-  rating: {
-    rate: number;
-    count: number;
-  };
-  title: string;
-  category: string;
-}
+import type { Product } from "../../data/productData";
+
 export const ProductCard = ({ product }: { product: Product }): JSX.Element => {
   const navigate = useNavigate();
   return (
@@ -31,6 +21,7 @@ export const ProductCard = ({ product }: { product: Product }): JSX.Element => {
       </div>
 
       <div className={styles.cardContent}>
+        {product.isOnSale && <span className={styles.saleBadge}>Sale</span>}
         <h2 className={styles.productTitle}>{product.title}</h2>
 
         <p className={styles.productDescription}>{product.description}</p>

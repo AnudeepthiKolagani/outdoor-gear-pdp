@@ -7,7 +7,8 @@
 
 .sizeBtn {
   min-width: 70px;
-
+  position: relative;
+  overflow: hidden;
   padding: 0.75rem 1rem;
 
   border: 1px solid $secondary-color;
@@ -21,9 +22,26 @@
 }
 
 .soldOut {
-  background: $bg-secondary;
-  color: $muted-color;
   cursor: not-allowed;
+  opacity: 0.6;
+
+  &::after {
+    content: "";
+    position: absolute;
+
+    top: 50%;
+    left: -20%;
+
+    width: 140%;
+    height: 2px;
+
+    background: $muted-color;
+
+    transform: rotate(-45deg);
+    transform-origin: center;
+
+    pointer-events: none;
+  }
 }
 
 .selected {

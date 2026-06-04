@@ -4,55 +4,9 @@ import { SizeSelector } from "./SizeSelector";
 import { QuantityPicker } from "./QuantityPicker";
 import { useSearchParams } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
+import type { Product } from "../../data/productData";
+import { defaultColors, defaultSizes } from "../../data/productData";
 import styles from "./ProductInfo.module.scss";
-
-interface Product {
-  id: number;
-  description: string;
-  image: string;
-  price: number;
-  rating: {
-    rate: number;
-    count: number;
-  };
-  title: string;
-  category: string;
-}
-const availableSizes = [
-  {
-    id: 1,
-    size: "S",
-    stock: 12,
-  },
-  {
-    id: 2,
-    size: "M",
-    stock: 8,
-  },
-  {
-    id: 3,
-    size: "L",
-    stock: 5,
-  },
-  {
-    id: 4,
-    size: "XL",
-    stock: 2,
-  },
-  {
-    id: 5,
-    size: "XXL",
-    stock: 0,
-  },
-];
-
-const availableColors = [
-  { id: 1, name: "Black", hex: "#1F2937", stock: 10 },
-  { id: 2, name: "White", hex: "#F9FAFB", stock: 0 },
-  { id: 3, name: "Navy Blue", hex: "#1E3A8A", stock: 8 },
-  { id: 4, name: "Forest Green", hex: "#166534", stock: 2 },
-  { id: 5, name: "Burgundy", hex: "#7F1D1D", stock: 14 },
-];
 
 export const ProductInfo = ({ product }: { product: Product | null }) => {
   const [quantity, setQuantity] = useState(1);
@@ -63,19 +17,30 @@ export const ProductInfo = ({ product }: { product: Product | null }) => {
   const selectedSize = searchParams.get("size");
   const productWithVariants = {
     ...(product ?? {}),
-    colors: availableColors,
-    availableSizes: availableSizes,
+    colors: defaultColors,
+    availableSizes: defaultSizes,
   };
+
+  const selectedColorVariant =
+    productWithVariants.colors.find((color) => color.name === selectedColor) ||
+    productWithVariants.colors[0];
+  const selectedSizeVariant =
+    productWithVariants.availableSizes.find(
+      (size) => size.code === selectedSize,
+    ) || productWithVariants.availableSizes[0];
+
+  const isSelectedVariantOutOfStock =
+    selectedColorVariant.stock === 0 || selectedSizeVariant.stock === 0;
   useEffect(() => {
     const params = new URLSearchParams(searchParams);
     let shouldUpdate = false;
 
     if (!params.get("color")) {
-      params.set("color", availableColors[0].name);
+      params.set("color", defaultColors[0].name);
       shouldUpdate = true;
     }
     if (!params.get("size")) {
-      params.set("size", availableSizes[0].size);
+      params.set("size", defaultSizes[0].code);
       shouldUpdate = true;
     }
 
@@ -90,26 +55,32 @@ export const ProductInfo = ({ product }: { product: Product | null }) => {
     setSearchParams(params);
   };
 
-  const handleSizeChange = (size: string): void => {
+  const handleSizeChange = (code: string): void => {
     const params = new URLSearchParams(searchParams);
-    params.set("size", size);
+    params.set("size", code);
     setSearchParams(params);
   };
 
   return (
     <section className={styles.productInfo}>
       <h1 className={styles.title}>{product?.title || "Product Title"}</h1>
-      {/* Need to add brand  */}
-      {/* <p className={styles.brand}>SummitGear</p> */}
-
+      <h3 className={styles.brand}>{product?.brand}</h3>
       <div className={styles.priceContainer}>
-        <span className={styles.salePrice}>
-          ₹{product?.price?.toLocaleString()}
-        </span>
+        {product?.isOnSale ? (
+          <>
+            <span className={styles.salePrice}>
+              ₹{product?.price?.toLocaleString()}
+            </span>
 
-        <span className={styles.originalPrice}>
-          ₹{(product?.price ?? 1000 * 1.2).toLocaleString()}
-        </span>
+            <span className={styles.originalPrice}>
+              ₹{(product?.price * 1.5).toLocaleString()}
+            </span>
+          </>
+        ) : (
+          <span className={styles.salePrice}>
+            ₹{product?.price?.toLocaleString()}
+          </span>
+        )}
       </div>
 
       <ColorSelector
@@ -118,14 +89,28 @@ export const ProductInfo = ({ product }: { product: Product | null }) => {
         handleColorChange={handleColorChange}
       />
 
+      {selectedColorVariant.stock === 0 && (
+        <p className={styles.stockStatus}>Selected color is out of stock.</p>
+      )}
+
       <SizeSelector
         availableSizes={productWithVariants.availableSizes}
         selectedSize={selectedSize}
         handleSizeChange={handleSizeChange}
       />
+      {selectedSizeVariant.stock <= 2 && selectedColorVariant.stock > 0 ? (
+        <p className={styles.stockStatus}>
+          Only {selectedSizeVariant.stock} left
+        </p>
+      ) : (
+        selectedColorVariant.stock > 0 && (
+          <p className={styles.availableStockStatus}>Avialble</p>
+        )
+      )}
 
       <QuantityPicker
         quantity={quantity}
+        // Calculate and pass maxQuantity based on stock
         maxQuantity={10}
         onQuantityChange={setQuantity}
       />
@@ -133,25 +118,28 @@ export const ProductInfo = ({ product }: { product: Product | null }) => {
       <button
         className={styles.addToCartBtn}
         type="button"
+        disabled={isSelectedVariantOutOfStock}
         onClick={() => {
-          if (!product) {
+          if (!product || isSelectedVariantOutOfStock) {
             return;
           }
 
           addToCart({
             productId: product.id,
-            color: selectedColor ?? availableColors[0].name,
-            size: selectedSize ?? availableSizes[0].size,
+            color: selectedColor ?? defaultColors[0].name,
+            size: selectedSize ?? defaultSizes[0].code,
             quantity,
           });
         }}
       >
-        Add to Cart
+        {isSelectedVariantOutOfStock ? "Out of Stock" : "Add to Cart"}
       </button>
 
-      <p className={styles.deliveryEstimate}>
-        Estimated delivery: 3-5 business days
-      </p>
+      {selectedColorVariant.stock > 0 && (
+        <p className={styles.deliveryEstimate}>
+          Estimated delivery: 3-5 business days
+        </p>
+      )}
     </section>
   );
 };
