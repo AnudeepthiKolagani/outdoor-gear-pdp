@@ -34,20 +34,20 @@ describe("Product Info", () => {
     expect(productName).toBeInTheDocument();
   });
 
-  it("Should render sale price and original price when the product is on sale", () => {
+  it("renders sale price and original price when the product is on sale", () => {
     renderWithProviders(
       <ProductInfo product={product} zoom={{ x: 1, y: 1, active: false }} />,
       "/?color=red&size=m",
     );
 
     const salePrice = screen.getByTestId("sale-price");
-    const originalPrice = screen.getByTestId("sale-price");
+    const originalPrice = screen.getByTestId("original-price");
 
     expect(salePrice).toBeInTheDocument();
     expect(originalPrice).toBeInTheDocument();
   });
 
-  it("Should have displayed out of stock message if the product is out of stock", () => {
+  it("shows an out of stock message when the selected variant is out of stock", () => {
     const outOfStockProduct = { ...product, colors: defaultColors };
     renderWithProviders(
       <ProductInfo
@@ -60,7 +60,7 @@ describe("Product Info", () => {
     expect(screen.getByText(/out of stock/)).toBeInTheDocument();
   });
 
-  it("Should disable the Add to cart button when the product is out of stock", () => {
+  it("disables the Add to Cart button when the selected variant is out of stock", () => {
     const outOfStockProduct = { ...product, colors: defaultColors };
     renderWithProviders(
       <ProductInfo
