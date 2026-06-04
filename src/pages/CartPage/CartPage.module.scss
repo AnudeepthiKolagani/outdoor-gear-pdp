@@ -290,50 +290,52 @@
 
   &:hover {
     color: $link-hover;
-
-    .clearButton:active {
-      box-shadow: 0 1px 3px rgba(19, 25, 33, 0.08);
-    }
-
-    .continueShopping {
-      display: block;
-      text-align: center;
-
-      margin-top: 1rem;
-
-      text-decoration: none;
-      color: #007185;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-
-    .emptyCart {
-      background: white;
-      border-radius: 12px;
-
-      text-decoration: none;
-      background: $btn-primary-bg;
-      color: $btn-primary-text;
-      padding: 0.9rem 1.5rem;
-      border-radius: 8px;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      transition: all 0.25s ease;
-      box-shadow: 0 2px 8px rgba(255, 216, 20, 0.2);
-    }
-
-    .actionButton:hover {
-      background: $btn-primary-hover;
-      box-shadow: 0 4px 12px rgba(255, 216, 20, 0.3);
-      transform: translateY(-2px);
-    }
-
-    .actionButton:active {
-      transform: translateY(0);
-    }
   }
+}
+
+.clearButton:active {
+  box-shadow: 0 1px 3px rgba(19, 25, 33, 0.08);
+}
+
+.continueShopping {
+  display: block;
+  text-align: right;
+
+  margin-top: 1rem;
+  font-size: 1.25rem;
+
+  text-decoration: none;
+  color: #007185;
+
+  &:hover {
+    text-decoration: underline;
+
+  }
+}
+
+.emptyCart {
+  background: white;
+  border-radius: 12px;
+  text-align: center;
+  text-decoration: none;
+  // background: $btn-primary-bg;
+  color: $btn-primary-text;
+  padding: 0.9rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.25s ease;
+  box-shadow: -4px 4px 4px 4px rgba(222, 187, 12, 0.2);
+}
+
+.actionButton:hover {
+  background: $btn-primary-hover;
+  box-shadow: 0 4px 12px rgba(255, 216, 20, 0.3);
+  transform: translateY(-2px);
+}
+
+.actionButton:active {
+  transform: translateY(0);
 }
 
 .actionButton {
