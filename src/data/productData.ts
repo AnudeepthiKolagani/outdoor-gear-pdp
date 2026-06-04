@@ -104,6 +104,12 @@ export const defaultColors: ColorOption[] = [
   },
 ];
 
+export const thumbnails = [
+  "https://m.media-amazon.com/images/I/61KyvPWSv7L._SY741_.jpg",
+  "https://m.media-amazon.com/images/I/61ZAQe+bddL._SY741_.jpg",
+  "https://m.media-amazon.com/images/I/61JxoCDF35L._SY879_.jpg",
+];
+
 export const annotateSaleProducts = (products: Product[]): Product[] =>
   products.map((product, index) => ({
     ...product,

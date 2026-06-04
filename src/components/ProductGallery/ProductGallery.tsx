@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import type { JSX } from "react/jsx-runtime";
 import styles from "./ProductGallery.module.scss";
+import { thumbnails } from "../../data/productData";
 
 type ZoomState = {
   x: number;
@@ -25,13 +26,7 @@ export const ProductGallery = ({
   const imgRef = useRef<HTMLImageElement | null>(null);
   const frame = useRef<number | null>(null);
 
-  const thumbnailImages = [
-    productImage,
-    productImage,
-    "https://m.media-amazon.com/images/I/61KyvPWSv7L._SY741_.jpg",
-    "https://m.media-amazon.com/images/I/61ZAQe+bddL._SY741_.jpg",
-    "https://m.media-amazon.com/images/I/51BoVdE8j4L._SY741_.jpg",
-  ];
+  const thumbnailImages = [productImage, productImage, ...thumbnails];
 
   const heroImage = thumbnailImages[selectedIndex];
 
