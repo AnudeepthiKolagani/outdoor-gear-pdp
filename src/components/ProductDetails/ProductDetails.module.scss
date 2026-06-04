@@ -46,10 +46,13 @@
 .activeTab {
   color: $text-primary;
   border-bottom: 3px solid $primary-color;
+  font-size: 1.3rem;
+  font-style: bold;
 }
 
 .content {
   padding-top: 2rem;
+  font-size: 1.25rem;
 }
 
 /* =========================
