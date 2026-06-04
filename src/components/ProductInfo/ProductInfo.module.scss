@@ -229,3 +229,13 @@
 .deliveryEstimate {
   font-size: 0.8rem;
 }
+
+.errorMessage {
+  padding: 1rem;
+  background: rgba($error-color, 0.08);
+  color: $error-color;
+  border-radius: 6px;
+  border-left: 3px solid $error-color;
+  font-size: 0.95rem;
+  margin: 1rem 0;
+}
