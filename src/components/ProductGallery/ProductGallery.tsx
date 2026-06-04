@@ -1,8 +1,13 @@
 import { useState, useRef } from "react";
 import type { JSX } from "react/jsx-runtime";
 import styles from "./ProductGallery.module.scss";
-import type { ZoomState } from "../../types/zoom";
 
+
+type ZoomState = {
+  x: number,
+  y: number,
+  active: boolean
+}
 interface ProductGalleryProps {
   productImage: string;
   zoom: ZoomState;
@@ -88,7 +93,7 @@ export const ProductGallery = ({
       <div className={styles.thumbnailContainer}>
         {thumbnailImages.map((src, index) => (
           <button
-            key={src}
+            key={index}
             type="button"
             onClick={() => setSelectedIndex(index)}
             className={`${styles.thumbnailButton} ${
