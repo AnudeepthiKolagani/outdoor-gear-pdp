@@ -16,6 +16,7 @@ interface ProductContextValue {
   error: string | null;
   reload: () => void;
   getProductById: (id: number) => Product | undefined;
+  clearError: () => void;
 }
 
 const ProductContext = createContext<ProductContextValue | undefined>(
@@ -23,6 +24,7 @@ const ProductContext = createContext<ProductContextValue | undefined>(
 );
 
 const PRODUCTS_API_URL = "https://fakestoreapi.com/products";
+const API_TIMEOUT = 10000; // 10 seconds
 
 export const ProductProvider = ({
   children,
@@ -33,22 +35,49 @@ export const ProductProvider = ({
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchProducts = useCallback(async () => {
+  const fetchProducts = useCallback(async (): Promise<void> => {
     try {
       setIsLoading(true);
       setError(null);
 
-      const response = await axios.get<Product[]>(PRODUCTS_API_URL);
+      const response = await axios.get<Product[]>(PRODUCTS_API_URL, {
+        timeout: API_TIMEOUT,
+      });
+
+      if (!response.data || !Array.isArray(response.data)) {
+        throw new Error("Invalid response format from API");
+      }
+
+      if (response.data.length === 0) {
+        throw new Error("No products available");
+      }
+
       setProducts(annotateSaleProducts(response.data));
     } catch (err) {
+      let errorMessage = "Failed to fetch products. Please try again.";
+
       if (axios.isAxiosError(err)) {
-        setError(
-          err.response?.data?.message ||
-            "Failed to fetch products. Please try again.",
-        );
+        if (err.response?.status === 404) {
+          errorMessage = "Products API endpoint not found";
+        } else if (err.response?.status === 500) {
+          errorMessage = "Server error - please try again later";
+        } else if (err.code === "ECONNABORTED") {
+          errorMessage = "Request timeout - please check your connection";
+        } else if (err.message === "Network Error") {
+          errorMessage =
+            "Network error - please check your internet connection";
+        } else {
+          errorMessage =
+            err.response?.data?.message || err.message || errorMessage;
+        }
+      } else if (err instanceof Error) {
+        errorMessage = err.message;
       } else {
-        setError("Something went wrong. Please try again.");
+        errorMessage = "An unknown error occurred";
       }
+
+      setError(errorMessage);
+      console.error("Error fetching products:", err);
     } finally {
       setIsLoading(false);
     }
@@ -59,9 +88,19 @@ export const ProductProvider = ({
   }, [fetchProducts]);
 
   const getProductById = useCallback(
-    (id: number) => products.find((product) => product.id === id),
+    (id: number): Product | undefined => {
+      if (!Number.isInteger(id) || id <= 0) {
+        console.warn("Invalid product ID:", id);
+        return undefined;
+      }
+      return products.find((product) => product.id === id);
+    },
     [products],
   );
+
+  const clearError = useCallback((): void => {
+    setError(null);
+  }, []);
 
   const value = useMemo(
     () => ({
@@ -70,8 +109,9 @@ export const ProductProvider = ({
       error,
       reload: fetchProducts,
       getProductById,
+      clearError,
     }),
-    [products, isLoading, error, fetchProducts, getProductById],
+    [products, isLoading, error, fetchProducts, getProductById, clearError],
   );
 
   return (

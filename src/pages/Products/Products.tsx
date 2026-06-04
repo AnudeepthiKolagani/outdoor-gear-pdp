@@ -27,7 +27,7 @@ export const Products = () => {
   }
 
   return (
-    <div>
+    <div className={styles.pageLayout}>
       <div className={styles.header}>
         <ShoppingCartIcon
           className={styles.shoppingCartIcon}

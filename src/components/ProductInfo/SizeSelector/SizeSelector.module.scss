@@ -10,7 +10,7 @@
   position: relative;
   overflow: hidden;
   padding: 0.75rem 1rem;
-  border: 1px solid $secondary-color;
+  border: 1px solid $border-color;
   border-radius: 8px;
   background: $bg-secondary;
   cursor: pointer;
@@ -18,24 +18,29 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
   font-weight: 500;
+  color: $text-primary;
   flex-shrink: 0;
+  box-shadow: 0 1px 3px rgba(19, 25, 33, 0.08);
 }
 
 .sizeBtn:hover:not(.soldOut) {
-  border-color: $primary-color;
-  transform: translateY(-2px);
+  border-color: $accent-color;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(19, 25, 33, 0.12);
+  background: $bg-primary;
 }
 
 .sizeBtn:active:not(.soldOut) {
-  transform: translateY(0);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(19, 25, 33, 0.1);
 }
 
 .soldOut {
   cursor: not-allowed;
   opacity: 0.5;
-  background: $muted-color;
+  background: $text-muted;
 
   &::after {
     content: "";
@@ -52,9 +57,13 @@
 }
 
 .selected {
-  border: 2px solid $primary-color;
-  background: rgba($primary-color, 0.05);
+  border: 2px solid $accent-color;
+  background: rgba($accent-color, 0.08);
   font-weight: 600;
+  box-shadow:
+    0 0 0 1px $bg-primary,
+    0 2px 8px rgba(255, 153, 0, 0.2);
+  color: $primary-color;
 }
 
 @media (min-width: 768px) {

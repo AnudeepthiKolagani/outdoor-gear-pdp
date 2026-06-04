@@ -22,6 +22,7 @@ export const QuantityPicker = ({
         value={quantity}
         onChange={(e) => onQuantityChange(Number(e.target.value))}
         className={styles.select}
+        disabled={maxQuantity === 0}
       >
         {Array.from({ length: maxQuantity }, (_, index) => index + 1).map(
           (value) => (

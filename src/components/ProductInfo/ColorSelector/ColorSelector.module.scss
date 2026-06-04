@@ -8,28 +8,32 @@
 .swatch {
   width: 42px;
   height: 42px;
-  border: 2px solid $secondary-color;
+  border: 2px solid $border-color;
   cursor: pointer;
-  border-radius: 50px;
+  border-radius: 50%;
   background-color: #00ff00;
-  transition:
-    transform 0.2s ease,
-    opacity 0.2s ease,
-    border-color 0.2s ease;
+  transition: all 0.25s ease;
   flex-shrink: 0;
+  box-shadow: 0 1px 4px rgba(19, 25, 33, 0.1);
 }
 
 .swatch:hover {
-  transform: scale(1.1);
+  transform: scale(1.15);
+  border-color: $accent-color;
+  box-shadow: 0 2px 8px rgba(19, 25, 33, 0.15);
 }
 
 .swatch:active {
-  transform: scale(0.95);
+  transform: scale(0.92);
+  box-shadow: 0 1px 3px rgba(19, 25, 33, 0.08);
 }
 
 .active {
-  border-color: $primary-color;
+  border-color: $accent-color;
   border-width: 3px;
+  box-shadow:
+    0 0 0 2px $bg-primary,
+    0 0 8px rgba(255, 153, 0, 0.3);
 }
 
 @media (min-width: 768px) {
