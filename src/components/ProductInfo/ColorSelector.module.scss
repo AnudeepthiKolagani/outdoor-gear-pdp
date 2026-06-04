@@ -11,6 +11,9 @@
   cursor: pointer;
   border-radius: 50px;
   background-color: #00ff00;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .active {

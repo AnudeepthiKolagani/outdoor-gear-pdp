@@ -7,19 +7,8 @@ import {
   useMemo,
   useState,
 } from "react";
-
-type Product = {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  price: number;
-  category: string;
-  rating: {
-    rate: number;
-    count: number;
-  };
-};
+import type { Product } from "../data/productData";
+import { annotateSaleProducts } from "../data/productData";
 
 interface ProductContextValue {
   products: Product[];
@@ -50,7 +39,7 @@ export const ProductProvider = ({
       setError(null);
 
       const response = await axios.get<Product[]>(PRODUCTS_API_URL);
-      setProducts(response.data);
+      setProducts(annotateSaleProducts(response.data));
     } catch (err) {
       if (axios.isAxiosError(err)) {
         setError(

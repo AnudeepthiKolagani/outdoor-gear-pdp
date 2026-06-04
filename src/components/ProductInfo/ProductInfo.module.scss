@@ -38,7 +38,7 @@
 
 .addToCartBtn {
   width: 100%;
-  height:50px;
+  height: 50px;
   background: $primary-color;
   color: #fff;
   border: none;
@@ -46,7 +46,26 @@
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  
+}
+
+.variantNotice {
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  background: rgba($warning-color, 0.08);
+  color: $warning-color;
+  font-size: 0.95rem;
+}
+
+.stockStatus {
+  color: $error-color;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.availableStockStatus {
+  color: $success-color;
+  font-size: 0.95rem;
+  font-weight: 600;
 }
 
 .addToCartBtn:disabled {
@@ -55,6 +74,6 @@
 }
 
 .deliveryEstimate {
-  color: $text-secondary;
+  color: $text-primary;
   font-size: 0.875rem;
 }
