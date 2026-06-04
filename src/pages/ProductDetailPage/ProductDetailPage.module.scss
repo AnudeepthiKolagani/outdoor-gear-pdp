@@ -1,35 +1,33 @@
 .productPageLayout {
   display: flex;
   flex-direction: column;
-  gap: 20px;
 }
 
 .productLayout {
   display: grid;
   grid-template-columns: 55% 45%;
   gap: 3rem;
-
-  max-width: 1440px;
-  margin: 5rem;
+  max-width: 1740px;
+  margin: 2rem;
   padding: 2rem;
   align-items: start;
+  margin: 0 auto;
 }
 
 .header {
-  position: fixed;
+  height: 32px;
+  width: 100%;
   max-width: 1740px;
-  margin: 2rem auto;
+  margin: 1rem auto;
   top: 5px;
   left: 0;
   right: 0;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  padding: 0 24px;
+  padding: 0 4px;
   z-index: 1000;
-  margin-bottom: 2rem;
 }
 
 .backButton {
@@ -73,12 +71,7 @@
     grid-template-columns: 55% 45%;
     gap: 3rem;
     padding: 2rem;
-    margin: 5rem;
-  }
-
-  .header {
-    top: 5px;
-    padding: 0 24px;
+    margin: 1rem;
   }
 
   .shoppingCartIcon {
