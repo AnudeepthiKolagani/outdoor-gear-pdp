@@ -10,7 +10,7 @@
   gap: 3rem;
 
   max-width: 1440px;
-  margin: 5rem ;
+  margin: 5rem;
   padding: 2rem;
   align-items: start;
 }
@@ -68,17 +68,32 @@
   }
 }
 
-/* =========================
-   MOBILE (≤ 767px)
-   ========================= */
+@media (min-width: 768px) {
+  .productLayout {
+    grid-template-columns: 55% 45%;
+    gap: 3rem;
+    padding: 2rem;
+    margin: 5rem;
+  }
 
+  .header {
+    top: 5px;
+    padding: 0 24px;
+  }
+
+  .shoppingCartIcon {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+//Mobile Responsive
 @media (max-width: 767px) {
   .productLayout {
     grid-template-columns: 1fr;
-
     gap: 1.5rem;
-
     padding: 1rem;
+    margin: 1rem 0;
   }
 
   .header {

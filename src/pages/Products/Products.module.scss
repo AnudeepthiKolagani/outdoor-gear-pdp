@@ -31,21 +31,50 @@
   gap: 1rem;
 }
 
-/* =========================
-   Mobile (≤ 767px)
-   ========================= */
-@media (max-width: 767px) {
+@media (min-width: 768px) {
   .productsContainer {
-    grid-template-columns: 1fr;
-    gap: 16px;
-
-    padding: 1rem;
-    padding-top: 4rem; // prevents cart icon overlap
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 2rem;
   }
 
   .header {
+    position: fixed;
+    top: 20px;
+    right: 50px;
+    z-index: 1000;
+  }
+
+  .shoppingCartIcon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .errorContainer {
+    padding: 2rem;
+  }
+}
+
+//Mobile Responsive
+@media (max-width: 767px) {
+  .productsContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    max-width: 100%;
+    margin: 0;
+    padding: 1rem;
+    padding-top: 4rem;
+  }
+
+  .header {
+    position: fixed;
     top: 16px;
-    right: 26px;
+    right: 16px;
+    z-index: 1000;
   }
 
   .shoppingCartIcon {

@@ -39,6 +39,7 @@
   padding: 4px;
   cursor: pointer;
   transition: all 0.2s ease;
+  flex-shrink: 0;
 }
 
 .thumbnailButton img {
@@ -62,6 +63,9 @@
 
 .mobileDots {
   display: none;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
 }
 
 .dot {
@@ -69,33 +73,50 @@
   height: 8px;
   border-radius: 50%;
   background: $muted-color;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .dotActive {
   background: $primary-color;
+  width: 10px;
+  border-radius: 50%;
 }
 
+//Mobile Responsive
 @media (max-width: 767px) {
   .heroImage {
     height: 350px;
   }
 
   .thumbnailContainer {
+    display: flex;
+    gap: 0.75rem;
     overflow-x: auto;
+    overflow-y: hidden;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    padding-bottom: 0.5rem;
+    padding: 0.75rem 1rem 0.5rem;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
   }
 
   .thumbnailContainer::-webkit-scrollbar {
     display: none;
   }
 
+  .thumbnailButton {
+    scroll-snap-align: center;
+  }
+
   .thumbnailImage {
     width: 80px;
     height: 80px;
+  }
+
+  .mobileDots {
+    display: flex;
   }
 
   .thumbnailButton {
