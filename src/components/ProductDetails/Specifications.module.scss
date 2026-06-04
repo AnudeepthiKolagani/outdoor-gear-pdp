@@ -1,17 +1,18 @@
+@use "../../../styles/abstracts/variables" as *;
 .table {
   width: 100%;
   border-collapse: collapse;
 }
 
 .table tr {
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid $secondary-color;
 }
 
 .table th {
   width: 250px;
   text-align: left;
   padding: 1rem;
-  background: #f9fafb;
+  background: $bg-secondary;
   font-weight: 600;
 }
 

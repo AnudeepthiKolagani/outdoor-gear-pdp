@@ -1,13 +1,14 @@
+@use "../../../styles/abstracts/variables" as *;
 .reviewGrid {
   display: grid;
   gap: 1rem;
 }
 
 .card {
-  border: 1px solid #e5e7eb;
+  border: 1px solid $secondary-color;
   border-radius: 8px;
   padding: 1.25rem;
-  background: #fff;
+  background: $bg-primary;
 }
 
 .header {
@@ -22,12 +23,12 @@
   }
 
   span {
-    color: #f59e0b;
+    color: $warning-color;
     font-size: 1rem;
   }
 }
 
 .card p {
-  color: #555;
+  color: $text-secondary;
   line-height: 1.6;
 }

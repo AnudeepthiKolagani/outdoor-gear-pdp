@@ -2,22 +2,22 @@ import { useState } from "react";
 import type { JSX } from "react/jsx-runtime";
 import styles from "./ProductGallery.module.scss";
 
-const thumbnailImages = [
-  "https://m.media-amazon.com/images/I/61JxoCDF35L._SY879_.jpg",
-  "https://m.media-amazon.com/images/I/61m1acM1l6L._SY741_.jpg",
-  "https://m.media-amazon.com/images/I/61KyvPWSv7L._SY741_.jpg",
-  "https://m.media-amazon.com/images/I/61ZAQe+bddL._SY741_.jpg",
-  "https://m.media-amazon.com/images/I/51BoVdE8j4L._SY741_.jpg",
-];
-
-const HERO_IMAGE =
-  "https://m.media-amazon.com/images/I/61JxoCDF35L._SY879_.jpg";
-
-export const ProductGallery = (): JSX.Element => {
+export const ProductGallery = ({
+  productImage,
+}: {
+  productImage: string;
+}): JSX.Element => {
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const thumbnailImages = [
+    productImage,
+    productImage,
+    "https://m.media-amazon.com/images/I/61KyvPWSv7L._SY741_.jpg",
+    "https://m.media-amazon.com/images/I/61ZAQe+bddL._SY741_.jpg",
+    "https://m.media-amazon.com/images/I/51BoVdE8j4L._SY741_.jpg",
+  ];
 
   const heroImage =
-    selectedIndex === -1 ? HERO_IMAGE : thumbnailImages[selectedIndex];
+    selectedIndex === -1 ? productImage : thumbnailImages[selectedIndex];
 
   return (
     <section className={styles.gallery}>

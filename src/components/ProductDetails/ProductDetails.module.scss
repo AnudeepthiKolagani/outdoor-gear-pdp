@@ -1,3 +1,4 @@
+@use "../../../styles/abstracts/variables" as *;
 .productDetails {
   width: 100%;
   max-width: 1440px;
@@ -14,7 +15,7 @@
 .tabs {
   display: flex;
   gap: 1rem;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid $secondary-color;
 }
 
 .tab {
@@ -25,18 +26,18 @@
 
   font-size: 1rem;
   font-weight: 500;
-  color: #555;
+  color: $text-secondary;
 
   transition: all 0.2s ease;
 }
 
 .tab:hover {
-  color: #111;
+  color: $text-primary;
 }
 
 .activeTab {
-  color: #111;
-  border-bottom: 3px solid #2563eb;
+  color: $text-primary;
+  border-bottom: 3px solid $primary-color;
 }
 
 .content {

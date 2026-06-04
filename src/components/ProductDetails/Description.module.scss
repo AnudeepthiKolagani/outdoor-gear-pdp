@@ -1,6 +1,7 @@
+@use "../../../styles/abstracts/variables" as *;
 .description {
   line-height: 1.8;
-  color: #333;
+  color: $text-secondary;
 
   p {
     margin-bottom: 1rem;
