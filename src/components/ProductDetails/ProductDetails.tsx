@@ -1,9 +1,9 @@
 import { useState } from "react";
 import type { JSX } from "react/jsx-runtime";
 
-import { Description } from "./Description";
-import { Specifications } from "./Specifications";
-import { Reviews } from "./Reviews";
+import { Description } from "./Description/Description";
+import { Specifications } from "./Specifications/Specifications";
+import { Reviews } from "./Reviews/Reviews";
 
 import styles from "./ProductDetails.module.scss";
 

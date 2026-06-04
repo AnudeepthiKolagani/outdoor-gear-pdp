@@ -1,6 +1,6 @@
 import type { JSX } from "react/jsx-runtime";
 import styles from "./Specifications.module.scss";
-import { productSpecifications } from "../../data/productDetailsData";
+import { productSpecifications } from "../../../data/productDetailsData";
 
 export const Specifications = (): JSX.Element => {
   return (

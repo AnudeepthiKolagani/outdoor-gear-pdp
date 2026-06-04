@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { ColorSelector } from "./ColorSelector";
-import { SizeSelector } from "./SizeSelector";
-import { QuantityPicker } from "./QuantityPicker";
+import { ColorSelector } from "./ColorSelector/ColorSelector";
+import { SizeSelector } from "./SizeSelector/SizeSelector";
+import { QuantityPicker } from "./QunatityPicker/QuantityPicker";
 import { useSearchParams } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import type { Product } from "../../data/productData";

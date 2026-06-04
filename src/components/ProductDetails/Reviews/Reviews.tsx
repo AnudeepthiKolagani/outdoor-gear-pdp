@@ -1,6 +1,6 @@
 import type { JSX } from "react/jsx-runtime";
 import styles from "./Reviews.module.scss";
-import { productReviews } from "../../data/productDetailsData";
+import { productReviews } from "../../../data/productDetailsData";
 
 export const Reviews = (): JSX.Element => {
   return (

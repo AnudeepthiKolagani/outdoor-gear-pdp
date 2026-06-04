@@ -1,6 +1,6 @@
 import type { JSX } from "react/jsx-runtime";
 import styles from "./Description.module.scss";
-import { productDescription } from "../../data/productDetailsData";
+import { productDescription } from "../../../data/productDetailsData";
 
 export const Description = (): JSX.Element => {
   return (
