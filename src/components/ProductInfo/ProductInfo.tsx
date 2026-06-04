@@ -4,7 +4,7 @@ import { SizeSelector } from "./SizeSelector/SizeSelector";
 import { QuantityPicker } from "./QunatityPicker/QuantityPicker";
 import { useSearchParams } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
-import type { Product } from "../../data/productData";
+import type { ColorOption, Product, SizeOption } from "../../data/productData";
 import { defaultColors, defaultSizes } from "../../data/productData";
 import styles from "./ProductInfo.module.scss";
 
@@ -15,7 +15,7 @@ type ZoomState = {
 };
 
 interface ProductInfoProps {
-  product: Product;
+  product: Product | null;
   zoom: ZoomState;
   heroImage?: string;
 }
@@ -31,17 +31,20 @@ export const ProductInfo = ({ product, zoom, heroImage }: ProductInfoProps) => {
   const selectedSize = searchParams.get("size");
   const productWithVariants = {
     ...(product ?? {}),
-    colors: defaultColors,
-    availableSizes: defaultSizes,
-  };
+    colors: product?.colors ?? defaultColors,
+  } as Product & { colors: ColorOption[] };
 
   const selectedColorVariant =
     productWithVariants.colors.find((color) => color.name === selectedColor) ||
     productWithVariants.colors[0];
+
+  const sizeOptions: SizeOption[] =
+    selectedColorVariant.sizes.length > 0
+      ? selectedColorVariant.sizes
+      : defaultSizes;
+
   const selectedSizeVariant =
-    productWithVariants.availableSizes.find(
-      (size) => size.code === selectedSize,
-    ) || productWithVariants.availableSizes[0];
+    sizeOptions.find((size) => size.code === selectedSize) || sizeOptions[0];
 
   const isSelectedVariantOutOfStock =
     selectedColorVariant.stock === 0 || selectedSizeVariant.stock === 0;
@@ -50,18 +53,18 @@ export const ProductInfo = ({ product, zoom, heroImage }: ProductInfoProps) => {
     let shouldUpdate = false;
 
     if (!params.get("color")) {
-      params.set("color", defaultColors[0].name);
+      params.set("color", productWithVariants.colors[0].name);
       shouldUpdate = true;
     }
     if (!params.get("size")) {
-      params.set("size", defaultSizes[0].code);
+      params.set("size", sizeOptions[0]?.code ?? defaultSizes[0].code);
       shouldUpdate = true;
     }
 
     if (shouldUpdate) {
       setSearchParams(params, { replace: true });
     }
-  }, [searchParams, setSearchParams]);
+  }, [productWithVariants.colors, searchParams, setSearchParams, sizeOptions]);
 
   const handleColorChange = (colorName: string): void => {
     const params = new URLSearchParams(searchParams);
@@ -124,7 +127,7 @@ export const ProductInfo = ({ product, zoom, heroImage }: ProductInfoProps) => {
       )}
 
       <SizeSelector
-        availableSizes={productWithVariants.availableSizes}
+        availableSizes={sizeOptions}
         selectedSize={selectedSize}
         handleSizeChange={handleSizeChange}
       />
@@ -157,8 +160,8 @@ export const ProductInfo = ({ product, zoom, heroImage }: ProductInfoProps) => {
 
           addToCart({
             productId: product.id,
-            color: selectedColor ?? defaultColors[0].name,
-            size: selectedSize ?? defaultSizes[0].code,
+            color: selectedColor ?? selectedColorVariant.name,
+            size: selectedSize ?? selectedSizeVariant.code,
             quantity,
           });
         }}

@@ -41,8 +41,6 @@ export const ProductDetailPage = (): JSX.Element => {
     contextProduct?.image ?? "",
   );
 
-  const PRODUCT_API_URL = `https://fakestoreapi.com/products/${productId}`;
-
   useEffect(() => {
     if (contextProduct) {
       setProduct(contextProduct);
