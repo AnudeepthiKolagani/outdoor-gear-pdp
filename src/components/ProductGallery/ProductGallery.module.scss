@@ -40,6 +40,10 @@
   transition: all 0.2s ease;
 }
 
+.thumbnailButton img {
+  display: block;
+}
+
 .thumbnailButton:hover {
   border-color: $primary-color;
 }
@@ -80,6 +84,8 @@
     scrollbar-width: none;
     -ms-overflow-style: none;
     padding-bottom: 0.5rem;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
   }
 
   .thumbnailContainer::-webkit-scrollbar {
@@ -89,6 +95,11 @@
   .thumbnailImage {
     width: 80px;
     height: 80px;
+  }
+
+  .thumbnailButton {
+    flex: 0 0 auto;
+    scroll-snap-align: center;
   }
 
   .mobileDots {

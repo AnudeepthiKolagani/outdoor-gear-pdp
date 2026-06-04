@@ -3,27 +3,27 @@
   flex-direction: column;
   gap: 20px;
 }
+
 .productLayout {
   display: grid;
   grid-template-columns: 55% 45%;
   gap: 3rem;
+
   max-width: 1440px;
   margin: 0 auto;
   padding: 2rem;
+  align-items: start;
 }
 
-@media (max-width: 767px) {
-  .productLayout {
-    grid-template-columns: 1fr;
-  }
-}
+/* =========================
+   HEADER (Cart Icon)
+   ========================= */
 
 .header {
   position: fixed;
   top: 20px;
   right: 50px;
   z-index: 1000;
-  margin-bottom: 2px;
 }
 
 .shoppingCartIcon {
@@ -31,4 +31,28 @@
   height: 32px;
   color: #333;
   cursor: pointer;
+}
+
+/* =========================
+   MOBILE (≤ 767px)
+   ========================= */
+
+@media (max-width: 767px) {
+  .productLayout {
+    grid-template-columns: 1fr;
+
+    gap: 1.5rem;
+
+    padding: 1rem;
+  }
+
+  .header {
+    top: 12px;
+    right: 12px;
+  }
+
+  .shoppingCartIcon {
+    width: 28px;
+    height: 28px;
+  }
 }

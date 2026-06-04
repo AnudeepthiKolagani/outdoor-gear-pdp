@@ -14,7 +14,7 @@ export const ProductDetails = (): JSX.Element => {
 
   return (
     <section className={styles.productDetails}>
-      <h2 className={styles.heading}>Product Details</h2>
+      <h2 className={styles.heading}>About this Product</h2>
 
       <div className={styles.tabs}>
         {tabs.map((tab) => (

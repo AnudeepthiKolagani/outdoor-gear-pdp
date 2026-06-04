@@ -1,4 +1,5 @@
 @use "../../../styles/abstracts/variables" as *;
+
 .productCard {
   display: flex;
   flex-direction: column;
@@ -64,21 +65,25 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+
+  width: fit-content;
+
   padding: 0.25rem 0.75rem;
+
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.02em;
   text-transform: uppercase;
+
   color: #fff;
   background: $primary-color;
+
   border-radius: 999px;
-  width: fit-content;
 }
 
 .productTitle {
   font-size: 1rem;
   font-weight: 600;
-
   line-height: 1.4;
 
   display: -webkit-box;
@@ -93,7 +98,6 @@
 .productDescription {
   color: $text-secondary;
   font-size: 0.9rem;
-
   line-height: 1.5;
 
   display: -webkit-box;
@@ -124,4 +128,60 @@
 .reviewCount {
   color: $text-secondary;
   font-size: 0.875rem;
+}
+
+/* =========================
+   Mobile (≤ 767px)
+   ========================= */
+
+@media (max-width: 767px) {
+  .productCard {
+    border-radius: 10px;
+
+    &:hover {
+      transform: none;
+      box-shadow: none;
+      border-color: $secondary-color;
+    }
+  }
+
+  .imageContainer {
+    height: 200px;
+    padding: 0.75rem;
+  }
+
+  .productCard:hover .productImage {
+    transform: none;
+  }
+
+  .cardContent {
+    padding: 0.875rem;
+    gap: 0.625rem;
+  }
+
+  .saleBadge {
+    font-size: 0.7rem;
+  }
+
+  .productTitle {
+    font-size: 0.95rem;
+    min-height: auto;
+  }
+
+  .productDescription {
+    font-size: 0.85rem;
+    -webkit-line-clamp: 2;
+  }
+
+  .price {
+    font-size: 1.1rem;
+  }
+
+  .rating {
+    font-size: 0.9rem;
+  }
+
+  .reviewCount {
+    font-size: 0.8rem;
+  }
 }
