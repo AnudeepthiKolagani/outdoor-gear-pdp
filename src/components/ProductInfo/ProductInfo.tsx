@@ -3,6 +3,7 @@ import { ColorSelector } from "./ColorSelector";
 import { SizeSelector } from "./SizeSelector";
 import { QuantityPicker } from "./QuantityPicker";
 import { useSearchParams } from "react-router-dom";
+import { useCart } from "../../context/CartContext";
 import styles from "./ProductInfo.module.scss";
 
 interface Product {
@@ -56,12 +57,12 @@ const availableColors = [
 export const ProductInfo = ({ product }: { product: Product | null }) => {
   const [quantity, setQuantity] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
+  const { addToCart } = useCart();
 
   const selectedColor = searchParams.get("color");
   const selectedSize = searchParams.get("size");
-  console.log("Color ,size", searchParams);
   const productWithVariants = {
-    ...product,
+    ...(product ?? {}),
     colors: availableColors,
     availableSizes: availableSizes,
   };
@@ -129,7 +130,24 @@ export const ProductInfo = ({ product }: { product: Product | null }) => {
         onQuantityChange={setQuantity}
       />
 
-      <button className={styles.addToCartBtn}>Add to Cart</button>
+      <button
+        className={styles.addToCartBtn}
+        type="button"
+        onClick={() => {
+          if (!product) {
+            return;
+          }
+
+          addToCart({
+            productId: product.id,
+            color: selectedColor ?? availableColors[0].name,
+            size: selectedSize ?? availableSizes[0].size,
+            quantity,
+          });
+        }}
+      >
+        Add to Cart
+      </button>
 
       <p className={styles.deliveryEstimate}>
         Estimated delivery: 3-5 business days
