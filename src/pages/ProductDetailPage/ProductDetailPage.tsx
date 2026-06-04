@@ -4,9 +4,10 @@ import { ProductInfo } from "../../components/ProductInfo/ProductInfo";
 import { ProductDetails } from "../../components/ProductDetails/ProductDetails";
 import styles from "./ProductDetailPage.module.scss";
 import { ShoppingCartIcon } from "lucide-react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useProducts } from "../../context/ProductContext";
 
 interface Product {
   id: number;
@@ -22,14 +23,33 @@ interface Product {
 }
 
 export const ProductDetailPage = (): JSX.Element => {
+  const navigate = useNavigate();
   const { productId } = useParams<{ productId: string }>();
-  const [product, setProduct] = useState<Product | null>(null);
+  const { getProductById } = useProducts();
+  const contextProduct = productId
+    ? getProductById(Number(productId))
+    : undefined;
+  const [product, setProduct] = useState<Product | null>(
+    contextProduct ?? null,
+  );
 
   const PRODUCT_API_URL = `https://fakestoreapi.com/products/${productId}`;
+
   useEffect(() => {
+    if (contextProduct) {
+      setProduct(contextProduct);
+      return;
+    }
+
+    if (!productId) {
+      return;
+    }
+
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(PRODUCT_API_URL);
+        const response = await axios.get(
+          `https://fakestoreapi.com/products/${productId}`,
+        );
         setProduct(response.data);
       } catch (error) {
         console.error(`Error fetching product with ID ${productId}:`, error);
@@ -37,14 +57,18 @@ export const ProductDetailPage = (): JSX.Element => {
     };
 
     fetchProduct();
-  }, [productId, PRODUCT_API_URL]);
+  }, [productId, contextProduct]);
+
   return (
     <div className={styles.productPageLayout}>
       <div className={styles.header}>
-        <ShoppingCartIcon className={styles.shoppingCartIcon} />
+        <ShoppingCartIcon
+          className={styles.shoppingCartIcon}
+          onClick={() => navigate("/cart")}
+        />
       </div>
       <div className={styles.productLayout}>
-        <ProductGallery productImage = {product?.image}/>
+        <ProductGallery productImage={product?.image} />
         <ProductInfo product={product} />
       </div>
       <ProductDetails />

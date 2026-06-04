@@ -8,3 +8,17 @@
   padding: 2rem;
 }
 
+.header {
+  position: fixed;
+  top: 20px;
+  right: 50px;
+  z-index: 1000;
+  margin-bottom: 2px;
+}
+
+.shoppingCartIcon {
+  width: 32px;
+  height: 32px;
+  color: #333;
+  cursor: pointer;
+}
