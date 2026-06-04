@@ -144,7 +144,7 @@ export const ProductInfo = ({ product, zoom, heroImage }: ProductInfoProps) => {
       <QuantityPicker
         quantity={quantity}
         // Calculate and pass maxQuantity based on stock
-        maxQuantity={10}
+        maxQuantity={selectedSizeVariant.stock}
         onQuantityChange={setQuantity}
       />
 
