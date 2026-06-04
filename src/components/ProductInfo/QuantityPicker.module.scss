@@ -14,21 +14,50 @@
 .select {
   width: 100px;
   height: 40px;
-
   padding: 0 0.75rem;
-
   border: 1px solid $secondary-color;
   border-radius: 8px;
-
   background: $bg-secondary;
-
   cursor: pointer;
-
   font-size: 0.95rem;
-
   outline: none;
+  transition: all 0.2s ease;
+}
+
+.select:hover {
+  border-color: $secondary-color;
 }
 
 .select:focus {
   border-color: $primary-color;
+  box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+}
+
+@media (min-width: 768px) {
+  .select {
+    width: 100px;
+    height: 40px;
+  }
+
+  .label {
+    font-size: 1.25rem;
+  }
+}
+
+//Mobile Responsive
+@media (max-width: 767px) {
+  .quantityPicker {
+    gap: 0.4rem;
+  }
+
+  .label {
+    font-size: 1.1rem;
+  }
+
+  .select {
+    width: 90px;
+    height: 36px;
+    font-size: 0.9rem;
+    padding: 0 0.5rem;
+  }
 }

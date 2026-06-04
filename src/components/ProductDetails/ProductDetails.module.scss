@@ -55,13 +55,30 @@
   font-size: 1.25rem;
 }
 
+@media (min-width: 768px) {
+  .productDetails {
+    padding: 2rem;
+  }
+
+  .heading {
+    font-size: 2rem;
+  }
+
+  .tab {
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
 /* =========================
    Mobile (≤ 767px)
    ========================= */
 
+//Mobile Responsive
 @media (max-width: 767px) {
   .productDetails {
     padding: 1rem;
+    max-width: 100%;
   }
 
   .heading {
@@ -71,11 +88,11 @@
 
   .tabs {
     gap: 0.5rem;
-
     overflow-x: auto;
     overflow-y: hidden;
-
     scrollbar-width: none;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
 
     &::-webkit-scrollbar {
       display: none;
@@ -84,13 +101,13 @@
 
   .tab {
     flex-shrink: 0;
-
     padding: 0.875rem 1rem;
-
     font-size: 0.9rem;
+    white-space: nowrap;
   }
 
   .content {
     padding-top: 1.25rem;
+    font-size: 1.1rem;
   }
 }
