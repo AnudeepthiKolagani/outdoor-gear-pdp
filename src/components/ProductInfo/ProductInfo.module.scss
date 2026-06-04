@@ -136,6 +136,25 @@
   }
 }
 
+.zoomPreview {
+  width: 500px;
+  height: 500px;
+  border: 1px solid #eee;
+  overflow: hidden;
+  position: relative;
+
+  background-image: var(--bg-image);
+  background-repeat: no-repeat;
+  background-size: 250%;
+  background-position: var(--bg-position);
+
+  transition: background-position 0.2s ease;
+
+  &.active {
+    transition: none;
+  }
+}
+
 //Mobile Responsive
 @media (max-width: 767px) {
   .productInfo {

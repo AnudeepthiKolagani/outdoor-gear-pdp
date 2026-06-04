@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import type { JSX } from "react/jsx-runtime";
 import styles from "./ProductGallery.module.scss";
 
@@ -11,12 +11,14 @@ interface ProductGalleryProps {
   productImage: string;
   zoom: ZoomState;
   setZoom: (value: ZoomState) => void;
+  onHeroImageChange: (image: string) => void;
 }
 
 export const ProductGallery = ({
   productImage,
   zoom,
   setZoom,
+  onHeroImageChange,
 }: ProductGalleryProps): JSX.Element => {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
@@ -32,6 +34,14 @@ export const ProductGallery = ({
   ];
 
   const heroImage = thumbnailImages[selectedIndex];
+
+  useEffect(() => {
+    onHeroImageChange(heroImage);
+  }, [heroImage, onHeroImageChange]);
+
+  useEffect(() => {
+    setSelectedIndex(0);
+  }, [productImage]);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!imgRef.current) return;

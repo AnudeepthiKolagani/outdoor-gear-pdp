@@ -17,13 +17,15 @@ type ZoomState = {
 interface ProductInfoProps {
   product: Product;
   zoom: ZoomState;
+  heroImage?: string;
 }
-export const ProductInfo = ({ product, zoom }: ProductInfoProps) => {
+export const ProductInfo = ({ product, zoom, heroImage }: ProductInfoProps) => {
   const [quantity, setQuantity] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
   const { addToCart } = useCart();
   const { x, y, active } = zoom;
   const image = product?.image;
+  const zoomImage = heroImage ?? image;
 
   const selectedColor = searchParams.get("color");
   const selectedSize = searchParams.get("size");
@@ -77,20 +79,13 @@ export const ProductInfo = ({ product, zoom }: ProductInfoProps) => {
     return (
       <div style={{ flex: 1 }}>
         <div
-          style={{
-            width: "500px",
-            height: "500px",
-            border: "1px solid #eee",
-            overflow: "hidden",
-            position: "relative",
-
-            backgroundImage: `url(${image})`,
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "250%",
-            backgroundPosition: active ? `${x * 100}% ${y * 100}%` : "center",
-
-            transition: active ? "none" : "background-position 0.2s ease",
-          }}
+          className={`${styles.zoomPreview} ${active ? styles.active : ""}`}
+          style={
+            {
+              "--bg-image": `url(${zoomImage})`,
+              "--bg-position": active ? `${x * 100}% ${y * 100}%` : "center",
+            } as React.CSSProperties
+          }
         />
       </div>
     );

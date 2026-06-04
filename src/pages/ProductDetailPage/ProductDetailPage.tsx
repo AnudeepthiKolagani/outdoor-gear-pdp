@@ -37,12 +37,16 @@ export const ProductDetailPage = (): JSX.Element => {
     y: 0,
     active: false,
   });
+  const [heroImage, setHeroImage] = useState<string>(
+    contextProduct?.image ?? "",
+  );
 
   const PRODUCT_API_URL = `https://fakestoreapi.com/products/${productId}`;
 
   useEffect(() => {
     if (contextProduct) {
       setProduct(contextProduct);
+      setHeroImage(contextProduct.image);
       return;
     }
 
@@ -77,11 +81,12 @@ export const ProductDetailPage = (): JSX.Element => {
       </div>
       <div className={styles.productLayout}>
         <ProductGallery
-          productImage={product?.image}
+          productImage={product?.image ?? ""}
           zoom={zoom}
           setZoom={setZoom}
+          onHeroImageChange={setHeroImage}
         />
-        <ProductInfo product={product} zoom={zoom} />
+        <ProductInfo product={product} zoom={zoom} heroImage={heroImage} />
       </div>
       <ProductDetails />
     </div>
