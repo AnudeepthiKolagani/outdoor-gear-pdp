@@ -8,10 +8,22 @@ import type { Product } from "../../data/productData";
 import { defaultColors, defaultSizes } from "../../data/productData";
 import styles from "./ProductInfo.module.scss";
 
-export const ProductInfo = ({ product }: { product: Product | null }) => {
+type ZoomState = {
+  x: number;
+  y: number;
+  active: boolean;
+};
+
+interface ProductInfoProps {
+  product: Product;
+  zoom: ZoomState;
+}
+export const ProductInfo = ({ product, zoom }: ProductInfoProps) => {
   const [quantity, setQuantity] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
   const { addToCart } = useCart();
+  const { x, y, active } = zoom;
+  const image = product.image;
 
   const selectedColor = searchParams.get("color");
   const selectedSize = searchParams.get("size");
@@ -60,6 +72,29 @@ export const ProductInfo = ({ product }: { product: Product | null }) => {
     params.set("size", code);
     setSearchParams(params);
   };
+
+  if (active) {
+    return (
+      <div style={{ flex: 1 }}>
+        <div
+          style={{
+            width: "500px",
+            height: "500px",
+            border: "1px solid #eee",
+            overflow: "hidden",
+            position: "relative",
+
+            backgroundImage: `url(${image})`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "250%",
+            backgroundPosition: active ? `${x * 100}% ${y * 100}%` : "center",
+
+            transition: active ? "none" : "background-position 0.2s ease",
+          }}
+        />
+      </div>
+    );
+  }
 
   return (
     <section className={styles.productInfo}>

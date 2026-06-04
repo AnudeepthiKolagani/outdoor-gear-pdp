@@ -25,8 +25,9 @@
 
 .thumbnailContainer {
   display: flex;
+  justify-content: center;
   gap: 0.75rem;
-  margin-top: 1rem;
+  margin: 1rem 0;
 }
 
 .thumbnailButton {
@@ -109,4 +110,23 @@
 
     margin-top: 1rem;
   }
+}
+
+.galleryWrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+  background: $bg-secondary;
+}
+
+.zoomLens {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border: 2px dashed rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.15);
+  will-change: left, top;
 }
