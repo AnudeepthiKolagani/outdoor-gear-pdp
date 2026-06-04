@@ -1,6 +1,6 @@
 import styles from "./ColorSelector.module.scss";
 
-import type { ColorOption } from "../../data/productData";
+import type { ColorOption } from "../../../data/productData";
 
 interface ColorSelectorProps {
   availableColors: ColorOption[];
