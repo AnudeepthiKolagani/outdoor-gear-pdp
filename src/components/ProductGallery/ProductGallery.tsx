@@ -2,12 +2,11 @@ import { useState, useRef } from "react";
 import type { JSX } from "react/jsx-runtime";
 import styles from "./ProductGallery.module.scss";
 
-
 type ZoomState = {
-  x: number,
-  y: number,
-  active: boolean
-}
+  x: number;
+  y: number;
+  active: boolean;
+};
 interface ProductGalleryProps {
   productImage: string;
   zoom: ZoomState;
@@ -106,6 +105,15 @@ export const ProductGallery = ({
               className={styles.thumbnailImage}
             />
           </button>
+        ))}
+      </div>
+      <div className={styles.mobileDots}>
+        {thumbnailImages.map((_, index) => (
+          <span
+            key={index}
+            className={`${styles.dot}
+              ${selectedIndex === index ? styles.dotActive : ""}`}
+          />
         ))}
       </div>
     </section>
