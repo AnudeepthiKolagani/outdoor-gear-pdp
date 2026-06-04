@@ -72,6 +72,7 @@ export const ProductGallery = ({
       >
         <img
           ref={imgRef}
+          data-testid="hero-image"
           src={heroImage}
           alt="Product"
           className={styles.heroImage}

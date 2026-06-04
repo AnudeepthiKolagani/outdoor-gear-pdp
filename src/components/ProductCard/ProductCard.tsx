@@ -10,6 +10,7 @@ export const ProductCard = ({ product }: { product: Product }): JSX.Element => {
     <div
       className={styles.productCard}
       key={product.id}
+      data-testid="product-card"
       onClick={() => navigate(`/product/${product.id}`)}
     >
       <div className={styles.imageContainer}>

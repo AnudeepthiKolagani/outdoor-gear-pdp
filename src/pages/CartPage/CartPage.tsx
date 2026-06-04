@@ -90,7 +90,7 @@ export const CartPage = () => {
                       −
                     </button>
 
-                    <span>{row.quantity}</span>
+                    <span data-testid="quantity">{row.quantity}</span>
 
                     <button
                       type="button"
@@ -151,6 +151,7 @@ export const CartPage = () => {
 
             <button
               type="button"
+              data-testid="clear-cart"
               onClick={clearCart}
               className={styles.clearButton}
             >

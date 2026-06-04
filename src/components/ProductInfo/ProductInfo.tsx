@@ -103,11 +103,11 @@ export const ProductInfo = ({ product, zoom }: ProductInfoProps) => {
       <div className={styles.priceContainer}>
         {product?.isOnSale ? (
           <>
-            <span className={styles.salePrice}>
+            <span className={styles.salePrice} data-testid="sale-price">
               ₹{product?.price?.toLocaleString()}
             </span>
 
-            <span className={styles.originalPrice}>
+            <span className={styles.originalPrice} data-testid="original-price">
               ₹{(product?.price * 1.5).toLocaleString()}
             </span>
           </>
@@ -153,6 +153,7 @@ export const ProductInfo = ({ product, zoom }: ProductInfoProps) => {
       <button
         className={styles.addToCartBtn}
         type="button"
+        data-testid="add-to-cart"
         disabled={isSelectedVariantOutOfStock}
         onClick={() => {
           if (!product || isSelectedVariantOutOfStock) {

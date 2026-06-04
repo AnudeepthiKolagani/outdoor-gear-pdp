@@ -1,6 +1,6 @@
 import styles from "./SizeSelector.module.scss";
 
-import type { SizeOption } from "../../data/productData";
+import type { SizeOption } from "../../../data/productData";
 
 interface SizeSelectorProps {
   availableSizes: SizeOption[];
