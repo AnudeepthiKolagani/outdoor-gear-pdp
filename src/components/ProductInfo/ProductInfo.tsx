@@ -23,7 +23,7 @@ export const ProductInfo = ({ product, zoom }: ProductInfoProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { addToCart } = useCart();
   const { x, y, active } = zoom;
-  const image = product.image;
+  const image = product?.image;
 
   const selectedColor = searchParams.get("color");
   const selectedSize = searchParams.get("size");
