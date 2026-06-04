@@ -6,19 +6,27 @@
 }
 
 .table tr {
-  border-bottom: 1px solid $secondary-color;
+  border-bottom: 1px solid $border-color;
+  transition: background-color 0.25s ease;
+}
+
+.table tr:hover {
+  background-color: $bg-secondary;
 }
 
 .table th {
   width: 250px;
   text-align: left;
   padding: 1rem;
-  background: $bg-secondary;
+  background: $bg-tertiary;
   font-weight: 600;
+  color: $text-primary;
+  border-bottom: 2px solid $border-color;
 }
 
 .table td {
   padding: 1rem;
+  color: $text-primary;
 }
 
 @media (min-width: 768px) {

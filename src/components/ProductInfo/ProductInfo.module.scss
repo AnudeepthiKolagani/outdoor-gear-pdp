@@ -10,13 +10,16 @@
   font-size: 0.875rem;
   color: $text-secondary;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1.2px;
+  font-weight: 500;
 }
 
 .title {
   font-size: 2rem;
   font-weight: 700;
   color: $text-primary;
+  letter-spacing: -0.5px;
+  margin-bottom: 0.5rem;
 }
 
 .priceContainer {
@@ -29,32 +32,54 @@
   font-size: 1.75rem;
   font-weight: 700;
   color: $primary-color;
+  letter-spacing: -0.5px;
 }
 
 .originalPrice {
-  color: $error-color;
+  color: $text-secondary;
   text-decoration: line-through;
+  font-size: 1rem;
+  opacity: 0.75;
 }
 
 .addToCartBtn {
   width: 90%;
   height: 50px;
 
-  background: $primary-color;
-  color: #fff;
+  background: $btn-primary-bg;
+  color: $btn-primary-text;
 
-  border: none;
+  border: 2px solid $btn-primary-bg;
   border-radius: 8px;
 
   font-size: 1rem;
   font-weight: 600;
+  letter-spacing: 0.5px;
 
   cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 8px rgba(255, 216, 20, 0.2);
+}
+
+.addToCartBtn:hover:not(:disabled) {
+  background: $btn-primary-hover;
+  border-color: $btn-primary-hover;
+  box-shadow: 0 4px 12px rgba(255, 216, 20, 0.3);
+  transform: translateY(-2px);
+}
+
+.addToCartBtn:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(255, 216, 20, 0.2);
 }
 
 .addToCartBtn:disabled {
-  background: $secondary-color;
+  background: $btn-disabled-bg;
+  color: $btn-disabled-text;
+  border-color: $btn-disabled-border;
   cursor: not-allowed;
+  box-shadow: none;
+  opacity: 0.6;
 }
 
 .variantNotice {
@@ -71,17 +96,30 @@
   color: $error-color;
   font-size: 0.95rem;
   font-weight: 600;
+  padding: 0.5rem 0.75rem;
+  background: rgba($error-color, 0.08);
+  border-radius: 6px;
+  border-left: 3px solid $error-color;
 }
 
 .availableStockStatus {
   color: $success-color;
   font-size: 0.95rem;
   font-weight: 600;
+  padding: 0.5rem 0.75rem;
+  background: rgba($success-color, 0.08);
+  border-radius: 6px;
+  border-left: 3px solid $success-color;
 }
 
 .deliveryEstimate {
-  color: $text-primary;
+  color: $text-secondary;
   font-size: 0.875rem;
+  padding: 0.75rem 1rem;
+  background: $bg-secondary;
+  border-radius: 6px;
+  border-left: 3px solid $info-color;
+  font-weight: 500;
 }
 
 @media (min-width: 768px) {

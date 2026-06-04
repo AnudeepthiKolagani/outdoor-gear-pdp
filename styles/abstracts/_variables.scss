@@ -1,15 +1,96 @@
-$primary-color: #475569;
-$secondary-color: #d9e0e8;
+// ===========================
+// Brand Colors
+// ===========================
+$primary-color: #131921;      // Amazon dark navy
 
+$accent-color: #ff9900;       // Amazon orange
+
+$secondary-color: #37475a;    // Navigation gray-blue
+
+// ===========================
+// Backgrounds
+// ===========================
 $bg-primary: #ffffff;
-$bg-secondary: #f9fafb;
+$bg-secondary: #f3f3f3;
+$bg-tertiary: #eaeded;
 
-$text-primary: #111827;
-$text-secondary: #6b7280;
+// ===========================
+// Text
+// ===========================
+$text-primary: #0f1111;
+$text-secondary: #565959;
+$text-muted: #7f8585;
+$text-disabled: #aab7b8;
 
-$muted-color: #9ca3af;
+// ===========================
+// Borders
+// ===========================
+$border-color: #d5d9d9;
+$border-hover: #b7bdbd;
+$border-focus: #ff9900;
 
-$success-color: #10b981;
-$warning-color: #f59e0b;
-$error-color: #ef4444;
-$info-color: #3b82f6;
+// ===========================
+// Primary Buttons (Add to Cart)
+// ===========================
+$btn-primary-bg: #ffd814;
+$btn-primary-hover: #f7ca00;
+$btn-primary-text: #0f1111;
+$btn-primary-border: #fcd200;
+
+// ===========================
+// Secondary Buttons 
+// ===========================
+$btn-secondary-bg: #ffa41c;
+$btn-secondary-hover: #fa8900;
+$btn-secondary-text: #0f1111;
+$btn-secondary-border: #ff8f00;
+
+// ===========================
+// Outline Buttons
+// ===========================
+$btn-outline-bg: #ffffff;
+$btn-outline-hover: #f7fafa;
+$btn-outline-text: #0f1111;
+$btn-outline-border: #d5d9d9;
+
+// ===========================
+// Disabled Buttons
+// ===========================
+$btn-disabled-bg: #e7e9ec;
+$btn-disabled-text: #999999;
+$btn-disabled-border: #d5d9d9;
+
+// ===========================
+// Status Colors
+// ===========================
+$success-color: #067d62;
+$warning-color: #ff9900;
+$error-color: #c40000;
+$info-color: #007185;
+
+// ===========================
+// Product Cards
+// ===========================
+$card-bg: #ffffff;
+$card-border: #e7e7e7;
+$card-hover-border: #c7c7c7;
+
+// ===========================
+// Links
+// ===========================
+$link-color: #007185;
+$link-hover: #c7511f;
+
+// ===========================
+// Ratings
+// ===========================
+$rating-star: #ffa41c;
+
+// ===========================
+// Sale & Offers
+// ===========================
+$sale-color: #cc0c39;
+$deal-badge-bg: #cc0c39;
+$deal-badge-text: #ffffff;
+
+
