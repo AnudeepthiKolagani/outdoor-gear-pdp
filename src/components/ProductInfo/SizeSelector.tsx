@@ -1,41 +1,40 @@
 import { useState } from "react";
 import styles from "./SizeSelector.module.scss";
 
-const SIZES = [
-  {
-    label: "S",
-    stock: 10,
-  },
-  {
-    label: "M",
-    stock: 2,
-  },
-  {
-    label: "L",
-    stock: 0,
-  },
-  {
-    label: "XL",
-    stock: 8,
-  },
-];
+interface SizeOption {
+  id: number;
+  size: string;
+  stock: number;
+}
 
-export const SizeSelector = () => {
-  const [selectedSize, setSelectedSize] = useState(0);
+interface SizeSelectorProps {
+  availableSizes: SizeOptions[];
+  selectedSize: string | null;
+  handleSizeChange: (size: string) => void;
+}
+export const SizeSelector = ({
+  availableSizes,
+  selectedSize,
+  handleSizeChange,
+}: SizeSelectorProps) => {
+  const activeSize =
+    availableSizes.find((size) => size.size === selectedSize) ||
+    availableSizes[0];
+
   return (
     <div>
-      <h3>Size: {SIZES[selectedSize].label}</h3>
+      <h3>Size: {activeSize.size}</h3>
 
       <div className={styles.sizes}>
-        {SIZES.map((size, index) => (
+        {availableSizes.map((size, index) => (
           <button
-            key={size.label}
+            key={size.id}
             disabled={size.stock === 0}
-            className={`${styles.sizeBtn} ${selectedSize === index ? styles.selected : ""}
+            className={`${styles.sizeBtn} ${activeSize.id === size.id ? styles.selected : ""}
             ${size.stock === 0 ? styles.soldOut : ""}`}
-            onClick={() => setSelectedSize(index)}
+            onClick={() => handleSizeChange(size.size)}
           >
-            {size.label}
+            {size.size}
 
             {/* {size.stock === 2 && <span>Only 2 left</span>} */}
           </button>
