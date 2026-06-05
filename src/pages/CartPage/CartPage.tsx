@@ -5,6 +5,7 @@ import { useToast } from "../../hooks/useToast";
 import styles from "./CartPage.module.scss";
 import { ArrowLeft } from "lucide-react";
 import { useEffect } from "react";
+import Swal from "sweetalert2";
 
 interface CartRow {
   productId: number;
@@ -106,20 +107,41 @@ export const CartPage = () => {
     }
   };
 
-  const handleClearCart = (): void => {
+  const handleClearCart = async (): Promise<void> => {
     try {
-      if (window.confirm("Are you sure you want to clear your cart?")) {
+      const result = await Swal.fire({
+        title: "Clear Cart?",
+        text: "All items will be removed. This action cannot be undone.",
+        icon: "warning",
+
+        showCancelButton: true,
+        confirmButtonColor: "#c40000",
+        cancelButtonColor: "#6b7280",
+        confirmButtonText: "Yes, clear it",
+        cancelButtonText: "Cancel",
+        reverseButtons: true,
+      });
+
+      if (result.isConfirmed) {
         clearCart();
         showSuccess("Cart cleared successfully");
+
+        Swal.fire({
+          title: "Cleared!",
+          text: "Your cart is now empty.",
+          icon: "success",
+          timer: 1500,
+          showConfirmButton: false,
+        });
       }
     } catch (err) {
       const errorMessage =
         err instanceof Error ? err.message : "Failed to clear cart";
+
       showError(errorMessage);
       console.error("Error clearing cart:", err);
     }
   };
-
   const handleCheckout = (): void => {
     try {
       if (cartRows.length === 0) {
