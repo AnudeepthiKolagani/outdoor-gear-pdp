@@ -106,12 +106,6 @@ export const ProductDetailPage = (): JSX.Element => {
         setIsLoading(false);
       }
     };
-
-    const loadingToastId = showLoading("Loading product details...");
-
-    fetchProduct().finally(() => {
-      dismiss(loadingToastId);
-    });
   }, [productId, contextProduct, showError, showLoading, dismiss]);
 
   const handleNavigateBack = (): void => {
@@ -208,7 +202,7 @@ export const ProductDetailPage = (): JSX.Element => {
       </div>
       <div className={styles.productLayout}>
         <ProductGallery
-          productImage={product?.image ?? ""}
+          productImage={product?.image}
           zoom={zoom}
           setZoom={setZoom}
           onHeroImageChange={setHeroImage}
