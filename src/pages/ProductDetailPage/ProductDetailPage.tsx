@@ -43,9 +43,11 @@ export const ProductDetailPage = (): JSX.Element => {
 
   useEffect(() => {
     if (contextProduct) {
-      setProduct(contextProduct);
-      setHeroImage(contextProduct.image);
-      setError(null);
+      if (!product || product.id !== contextProduct.id) {
+        setProduct(contextProduct);
+        setHeroImage(contextProduct.image);
+        setError(null);
+      }
       return;
     }
 
