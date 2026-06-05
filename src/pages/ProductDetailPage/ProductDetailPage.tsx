@@ -6,7 +6,6 @@ import styles from "./ProductDetailPage.module.scss";
 import { ArrowLeft, ShoppingCartIcon } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { useProducts } from "../../context/ProductContext";
 import { useToast } from "../../hooks/useToast";
 import type { Product } from "../../data/productData";
@@ -38,7 +37,7 @@ export const ProductDetailPage = (): JSX.Element => {
   const [heroImage, setHeroImage] = useState<string>(
     contextProduct?.image ?? "",
   );
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -56,62 +55,6 @@ export const ProductDetailPage = (): JSX.Element => {
       return;
     }
 
-    const fetchProduct = async (): Promise<void> => {
-      try {
-        setIsLoading(true);
-        setError(null);
-
-        // Validate product ID
-        const id = Number(productId);
-        if (isNaN(id) || id <= 0) {
-          throw new Error("Invalid product ID");
-        }
-
-        const response = await axios.get<Product>(
-          `https://fakestoreapi.com/products/${id}`,
-          {
-            timeout: 10000, // 10 second timeout
-          },
-        );
-
-        if (!response.data || !response.data.id) {
-          throw new Error("Invalid product data received from server");
-        }
-
-        setProduct(response.data);
-        setHeroImage(response.data.image);
-        setError(null);
-      } catch (err) {
-        let errorMessage = "Failed to load product details";
-
-        if (axios.isAxiosError(err)) {
-          if (err.response?.status === 404) {
-            errorMessage = "Product not found";
-          } else if (err.code === "ECONNABORTED") {
-            errorMessage = "Request timeout - please try again";
-          } else if (err.message === "Network Error") {
-            errorMessage = "Network error - please check your connection";
-          } else {
-            errorMessage =
-              err.response?.data?.message || err.message || errorMessage;
-          }
-        } else if (err instanceof Error) {
-          errorMessage = err.message;
-        }
-
-        setError(errorMessage);
-        showError(`Error: ${errorMessage}`);
-        console.error("Error fetching product:", err);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    const loadingToastId = showLoading("Loading product details...");
-
-    fetchProduct().finally(() => {
-      dismiss(loadingToastId);
-    });
   }, [productId, contextProduct, showError, showLoading, dismiss]);
 
   const handleNavigateBack = (): void => {
@@ -208,7 +151,7 @@ export const ProductDetailPage = (): JSX.Element => {
       </div>
       <div className={styles.productLayout}>
         <ProductGallery
-          productImage={product?.image ?? ""}
+          productImage={product?.image}
           zoom={zoom}
           setZoom={setZoom}
           onHeroImageChange={setHeroImage}

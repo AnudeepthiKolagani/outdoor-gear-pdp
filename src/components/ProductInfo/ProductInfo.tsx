@@ -8,6 +8,7 @@ import { useToast } from "../../hooks/useToast";
 import type { ColorOption, Product, SizeOption } from "../../data/productData";
 import { defaultColors, defaultSizes } from "../../data/productData";
 import styles from "./ProductInfo.module.scss";
+import { ProductInfoSkeleton } from "../Skeletons/ProductInfo/ProductInfoSkeleton";
 
 type ZoomState = {
   x: number;
@@ -25,7 +26,7 @@ export const ProductInfo = ({ product, zoom, heroImage }: ProductInfoProps) => {
   const [quantity, setQuantity] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
   const [isAddingToCart, setIsAddingToCart] = useState(false);
-  const { addToCart, error: cartError, clearError } = useCart();
+  const { addToCart } = useCart();
   const { showSuccess, showError } = useToast();
   const { x, y, active } = zoom;
   const image = product?.image;
@@ -73,15 +74,6 @@ export const ProductInfo = ({ product, zoom, heroImage }: ProductInfoProps) => {
       setSearchParams(params, { replace: true });
     }
   }, [productWithVariants.colors, searchParams, setSearchParams, sizeOptions]);
-
-  // Show cart error if it occurs
-  useEffect(() => {
-    if (cartError) {
-      showError(`Error: ${cartError}`);
-      clearError();
-      setIsAddingToCart(false);
-    }
-  }, [cartError, showError, clearError]);
 
   const handleColorChange = (colorName: string): void => {
     try {
@@ -175,13 +167,7 @@ export const ProductInfo = ({ product, zoom, heroImage }: ProductInfoProps) => {
   }
 
   if (!product) {
-    return (
-      <section className={styles.productInfo}>
-        <p className={styles.errorMessage}>
-          Unable to load product information. Please try again.
-        </p>
-      </section>
-    );
+    return <ProductInfoSkeleton />;
   }
 
   return (

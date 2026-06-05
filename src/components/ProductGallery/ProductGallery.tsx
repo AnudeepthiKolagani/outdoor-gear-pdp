@@ -9,7 +9,7 @@ type ZoomState = {
   active: boolean;
 };
 interface ProductGalleryProps {
-  productImage: string;
+  productImage?: string;
   zoom: ZoomState;
   setZoom: (value: ZoomState) => void;
   onHeroImageChange: (image: string) => void;
@@ -26,17 +26,15 @@ export const ProductGallery = ({
   const imgRef = useRef<HTMLImageElement | null>(null);
   const frame = useRef<number | null>(null);
 
-  const thumbnailImages = [productImage, productImage, ...thumbnails];
+  const thumbnailImages = productImage
+    ? [productImage, productImage, ...thumbnails]
+    : thumbnails;
 
-  const heroImage = thumbnailImages[selectedIndex];
+  const heroImage = thumbnailImages[selectedIndex] ?? thumbnailImages[0];
 
   useEffect(() => {
     onHeroImageChange(heroImage);
   }, [heroImage, onHeroImageChange]);
-
-  useEffect(() => {
-    setSelectedIndex(0);
-  }, [productImage]);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!imgRef.current) return;
